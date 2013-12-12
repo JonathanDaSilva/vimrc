@@ -1,0 +1,28 @@
+# Jade
+snippet doctype
+	doctype
+	html(lang="fr")
+		head
+			meta(charset="utf-8")
+			title Title of the page
+		body
+snippet link
+	link(rel="stylesheet", href="/css/${1:style}.css")
+snippet angular
+	script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0-rc.2/angular.min.js")
+	//- script(src="http://code.angularjs.org/1.2.0-rc.2/angular-route.min.js")
+	//- script(src="http://code.angularjs.org/1.2.0-rc.2/angular-sanitize.min.js")
+	//- script(src="https://cdn.firebase.com/v0/firebase.js")
+	//- script(src="http://code.jquery.com/jquery-2.0.3.min.js")
+	//- script(src="https://cdn.firebase.com/libs/angularfire/0.3.0/angularfire.min.js")
+snippet script
+	script(src="/js/${1:main}-min.js")
+snippet a
+	a(href="${1}", title="${2}")
+snippet form
+	form(method="${1:post}")
+# Angular
+snippet controller
+	ng-controller="${1:name}Ctrl"
+snippet model
+	ng-model="${1}"

@@ -1,0 +1,167 @@
+# --------------- Complete Function ----------------
+global !p
+import re, vim, os
+
+def getFileName(filepath):
+    filename = filepath.split('\\')[-1]
+    return filename.split('.')[0]
+
+def getName(filepath, end):
+    filename = getFileName(filepath)
+    search = re.search("(\w+)" + end, filename)
+    return search.group(1).lower()
+
+def complete(t, opts):
+    if t:
+       opts = [m[len(t):] for m in opts if m.startswith(t)]
+    if len(opts) == 1:
+        return opts[0]
+    return "("+ "|".join(opts[0:5]) +")"
+
+def title(text):
+    if len(text) == 1:
+        return text.capitalize()
+    elif len(text) > 1:
+        return text[0].capitalize() + text[1:].lower()
+    else:
+       return ""
+
+def whereRoute(text, filename):
+    results = re.findall("{([_a-zA-Z0-9]+)}", text)
+    if results:
+        text = "\n"
+        for result in results:
+            name  = result.split("_")[-1]
+            model = title(result.split("_")[0])
+            if name == "id":
+                exp = "\d+"
+            elif name == "slug":
+                exp = "[\w\-]+"
+            elif name == "username":
+                exp = "[\w]+"
+            else:
+                exp = ""
+
+            current = "Route::pattern('"+ result +"', '"+ exp +"');\n"
+            ffile = open(filename, "r")
+
+            found = False
+            for line in ffile:
+                if line == current:
+                    found = True
+                    break
+
+            if not found:
+                text += current
+                if name == "id":
+                    text += "Route::model('"+ result +"','"+ model +"');\n"
+                else:
+                    text += "Route::bind('"+ result +"', function($value, $route){\n"
+                    text += "    return "+ model +"::where('"+ name +"', $value)->firstOrFail();\n"
+                    text += "});\n"
+
+
+
+        return text
+    else:
+        return '\n'
+endglobal
+
+# ----------------------- PHP -----------------------
+snippet php "php tags"
+<?php
+${1}
+?>
+endsnippet
+
+snippet class "class declaration"
+class ${1:Name} extends ${2:Name} {$0
+}
+endsnippet
+
+snippet met "method déclaration"
+$1`!p snip.rv=complete(t[1], ['public', 'private', 'protected', 'static'])` function ${2:name}($3)
+{$0
+}
+endsnippet
+
+snippet attr "attribute déclaration"
+$1`!p snip.rv=complete(t[1], ['public', 'private', 'protected', 'static'])` $${2:name};
+endsnippet
+
+# ------------------------- Laravel -------------------------
+snippet route "Route for laravel 4"
+Route::$1`!p snip.rv=complete(t[1], ['any','get','post','put','delete'])`('/$2',[
+    'uses' => '${3/\w+\s*/\u$0/}Controller@${4:index}',
+    'as'   => '${3}.$4',
+]);`!p snip.rv = whereRoute(t[2], vim.eval('expand("%:p")'))`
+endsnippet
+
+snippet bind "Route binding for Laravel 4"
+Route::bind('$1_$2', function($value, $route){
+    return ${1/\w+\s*/\u$0/g}::where('$2', $value)->firstOrFail();
+});
+endsnippet
+
+snippet ctrl "Controller : Laravel 4"
+<?php
+class `!p snip.rv = fn.split('.')[0]` extends BaseController
+{
+    public function $1($2)
+    {
+        return View::make('`!p snip.rv = fn.split('.')[0].lower()`.$1', compact($3);
+    }
+}
+?>
+endsnippet
+
+snippet view "View for a controller"
+public function $1($2)
+{$0
+    return View::make("`!p snip.rv = getName(fn, "Controller")`.$1", compact($3));
+}
+endsnippet
+
+snippet seeder "Make a seeder file for laravel"
+<?php
+class `!p snip.rv = getFileName(fn)` extends Seeder {
+
+	public function run()
+	{
+        DB::table('`!p snip.rv = getName(fn, "TableSeeder")`')->truncate();
+        $`!p snip.rv = getName(fn, "TableSeeder")`s = array(
+            [$0
+            ],
+        );
+        DB::table('`!p snip.rv = getName(fn, "TableSeeder")`')->insert($`!p snip.rv = getName(fn, "TableSeeder")`s);
+	}
+
+}
+endsnippet
+
+snippet migration "Create a migration for Laravel 4"
+<?php
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+
+class `!p snip.rv = getFileName(fn)` extends Migration {
+
+    public function up()
+    {
+        Schema::create('$1', function(Blueprint $table)
+        {
+            $table->increments('id')->unsigned();$0
+            $table->timestamps();
+        });
+    }
+
+    public function down()
+    {
+        Schema::drop('$1');
+    }
+}
+endsnippet
+
+snippet field
+$table->$1`!p snip.rv = complete(t[1], ['increments','bigIncrements','string','integer','bigInteger','float','boolean','timestamp','softDeletes','text'])`($2);
+endsnippet
