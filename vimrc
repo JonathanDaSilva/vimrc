@@ -1,7 +1,7 @@
 " Basic Options      {{{
 
 set nocompatible
-set runtimepath=$VIM/vim74,~/.vim/bundle/neobundle.vim/,~/.vim/bundle/unite-laravel
+set runtimepath=$VIM/vim74,~/.vim/bundle/neobundle.vim/
 let mapleader=','
 set backspace=2
 set autoread autowrite
@@ -331,3 +331,6 @@ nnoremap <Leader>d :VsplitVifm<CR>
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'majutsushi/tagbar'
 NeoBundle 'sjl/splice.vim'
+
+" Test
+set runtimepath+=~/.vim/bundle/unite-laravel
