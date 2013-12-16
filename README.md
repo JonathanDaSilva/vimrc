@@ -19,5 +19,4 @@ My plugins
 * UltiSnips
 * Unite
 * VimShell
-* VimShell
 * YouCompleteMe
