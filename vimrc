@@ -199,6 +199,11 @@ let g:EasyMotion_leader_key = '<Leader><Leader><Leader>'
 let g:EasyMotion_mapping_f = '<Leader>t'
 let g:EasyMotion_mapping_F = '<Leader>s'
 " }}}
+"   IndentGuide        : Display indent guides                     {{{
+NeoBundle 'nathanaelkane/vim-indent-guides'
+let g:indent_guide_start_level=2
+let g:indent_guides_guide_size=1
+" }}}
 
 " }}}
 " Apparence Options  {{{
@@ -234,7 +239,7 @@ set matchtime=3
 
 "   Vim {{{
 autocmd! BufRead,BufNewFile *.vim,vimrc,_vimrc set foldmethod=marker foldmarker={{{,}}} foldlevel=0 foldenable noautoindent
-autocmd! BufWrite *.vim,vimrc,_vimrc source %
+" autocmd! BufWrite *.vim,vimrc,_vimrc source %
 autocmd FileType vim set commentstring=\"\ %s
 " }}}
 
