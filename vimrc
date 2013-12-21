@@ -147,10 +147,8 @@ nnoremap <Leader>uc :<C-u>Unite colorscheme -start-insert<CR>
 
 NeoBundle 'kannokanno/unite-todo'
 NeoBundle 'tsukkee/unite-tag'
-NeoBundle 'kmnk/vim-unite-giti'
 NeoBundle 'osyo-manga/unite-fold'
 NeoBundle 'Shougo/unite-ssh'
-nnoremap <leader>g  :<C-u>Unite giti -no-start-insert<CR>
 "}}}
 "   YouCompleteMe      : AutoCompletion                            {{{
 NeoBundle 'Valloric/YouCompleteMe', {'rev': 'cf62110'}
