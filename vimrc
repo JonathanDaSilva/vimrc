@@ -334,7 +334,6 @@ noremap i i
 NeoBundle 'istib/vifm.vim'
 nnoremap <Leader>d :VsplitVifm<CR>
 " Need to test or configure
-NeoBundle 'scrooloose/syntastic'
 NeoBundle 'majutsushi/tagbar'
 NeoBundle 'sjl/splice.vim'
 
