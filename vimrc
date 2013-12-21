@@ -19,7 +19,7 @@ set tabstop=4 shiftwidth=4 expandtab
 set shiftround
 " fileencoding
 set encoding=utf-8 fileencoding=utf-8
-set ff=unix ffs=unix
+set ff=dos ffs=dos
 " Keep selection while indent
 vnoremap < <gv
 vnoremap > >gv
