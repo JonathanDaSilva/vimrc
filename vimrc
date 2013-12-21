@@ -165,11 +165,8 @@ vnoremap <Leader><Leader>= <ESC>:Tabular /=><CR>
 vnoremap <Leader>: <ESC>:Tabular /:<CR>
 vnoremap <Leader><Leader>: <ESC>:Tabular /:\zs<CR>
 " }}}
-"   VimShell           : Execute a shell into vim                  {{{
+"   Vimproc            : A dll for Shougo plugins                  {{{
 NeoBundle 'Shougo/vimproc'
-NeoBundle 'Shougo/vimshell.vim'
-map <Leader>v  w<CR>wt:resize 7<CR>:VimShellCreate<CR>
-map <Leader>vs :VimShellCreate<CR>
 " }}}
 "   NERDTree           : A sidebar filemanager                     {{{
 NeoBundle 'scrooloose/nerdtree'
