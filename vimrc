@@ -273,8 +273,10 @@ NeoBundle 'tpope/vim-haml'
 au BufNewFile,BufRead,BufWrite *.js set tabstop=2 shiftwidth=2
 " }}}
 "   CoffeeScript {{{
-au BufNewFile,BufRead,BufWrite *.coffee set tabstop=2 shiftwidth=2
 NeoBundle 'kchmck/vim-coffee-script'
+au BufNewFile,BufRead,BufWrite *.coffee set filetype=coffee
+autocmd FileType coffee set tabstop=2 shiftwidth=2
+autocmd FileType coffee set commentstring=#\ %s
 " }}}
 
 "   PowerShell {{{
