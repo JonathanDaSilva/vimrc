@@ -51,9 +51,9 @@ nnoremap <down> ddp
 nnoremap <right> >>
 nnoremap <left> <<
 " Save
-nnoremap <C-s> <ESC>:w<CR>
-inoremap <C-s> <ESC>:w<CR>
-vnoremap <C-s> <ESC>:w<CR>
+nnoremap <C-s> <ESC>:w!<CR>
+inoremap <C-s> <ESC>:w!<CR>
+vnoremap <C-s> <ESC>:w!<CR>
 " Quit
 nnoremap <C-w> <ESC>:q<CR>
 inoremap <C-w> <ESC>:q<CR>
