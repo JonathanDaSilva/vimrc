@@ -290,7 +290,7 @@ autocmd FileType ps1 set commentstring=#\ %s
 
 set history=1000
 set undolevels=500
-set backup noswapfile
+set backup swapfile undofile
 
 set undodir=~/.vim/tmp/undo//
 set backupdir=~/.vim/tmp/backup//
