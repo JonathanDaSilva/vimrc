@@ -281,6 +281,8 @@ autocmd FileType coffee set commentstring=#\ %s
 
 "   PowerShell {{{
 NeoBundle 'PProvost/vim-ps1'
+autocmd BufWrite,BufRead,BufNewFile *.ps1 set filetype=ps1
+autocmd FileType ps1 set commentstring=#\ %s
 " }}}
 
 " }}}
