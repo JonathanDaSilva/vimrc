@@ -124,6 +124,13 @@ NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'JazzCore/ctrlp-cmatcher'
 let g:ctrlp_match_func = {'match' : 'matcher#cmatch' }
 " }}}
+"   YouCompleteMe      : AutoCompletion                            {{{
+NeoBundle 'Valloric/YouCompleteMe'
+let g:ycm_key_list_select_completion   = ['<c-j>']
+let g:ycm_key_list_previous_completion = ['<c-k>']
+let g:ycm_key_invoke_completion        = '<C-Space>'
+let g:ycm_use_ultisnips_completer      = 1
+" }}}
 "   UltiSnips          : The best snippets manager                 {{{
 NeoBundle 'SirVer/ultisnips'
 let g:UltiSnipsUsePythonVersion   = 2
@@ -150,12 +157,6 @@ NeoBundle 'tsukkee/unite-tag'
 NeoBundle 'osyo-manga/unite-fold'
 NeoBundle 'Shougo/unite-ssh'
 "}}}
-"   YouCompleteMe      : AutoCompletion                            {{{
-NeoBundle 'Valloric/YouCompleteMe', {'rev': 'cf62110'}
-let g:ycm_key_list_select_completion = ['<c-j>']
-let g:ycm_key_list_previous_completion = ['<c-k>']
-let g:ycm_key_invoke_completion = '<C-Space>'
-" }}}
 "   Tabular            : Automaticly align caracter                {{{
 NeoBundle 'godlygeek/tabular'
 vnoremap <Leader>= <ESC>:Tabular /=<CR>
