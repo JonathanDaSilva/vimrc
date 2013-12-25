@@ -1,7 +1,7 @@
 " Basic Options      {{{
 
 set nocompatible
-set runtimepath=$VIM/vim74,~/.vim/bundle/neobundle.vim/
+set runtimepath=$VIM/vim74,~/.vim/,~/.vim/bundle/neobundle.vim/
 let mapleader=','
 set backspace=2
 set autoread autowrite
@@ -110,7 +110,6 @@ endfunction " }}}
 " }}}
 " Plugins Options    {{{
 
-
 "   NeoBundle          : The package manager                       {{{
 call neobundle#rc(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
@@ -127,11 +126,10 @@ let g:ctrlp_match_func = {'match' : 'matcher#cmatch' }
 " }}}
 "   UltiSnips          : The best snippets manager                 {{{
 NeoBundle 'SirVer/ultisnips'
-let g:UltiSnipsUsePythonVersion = 2
-let g:UltiSnipsEditSplit = "vertical"
-let g:UltiSnipsSnippetsDir = expand("~/.vim/snippets/")
-let g:UltiSnipsJumpForwardTrigger = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<S-tab>"
+let g:UltiSnipsUsePythonVersion   = 2
+let g:UltiSnipsEditSplit          = "vertical"
+let g:UltiSnipsSnippetsDir        = expand("~/.vim/snippets/")
+let g:UltiSnipsSnippetDirectories = ["snippets"]
 nnoremap <Leader>es <ESC>:UltiSnipsEdit<CR>
 " }}}
 "   Unite              : An incredible interface                   {{{
