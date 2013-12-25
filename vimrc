@@ -133,10 +133,12 @@ let g:ycm_use_ultisnips_completer      = 1
 " }}}
 "   UltiSnips          : The best snippets manager                 {{{
 NeoBundle 'SirVer/ultisnips'
-let g:UltiSnipsUsePythonVersion   = 2
-let g:UltiSnipsEditSplit          = "vertical"
-let g:UltiSnipsSnippetsDir        = expand("~/.vim/snippets/")
-let g:UltiSnipsSnippetDirectories = ["snippets"]
+let g:UltiSnipsUsePythonVersion    = 2
+let g:UltiSnipsEditSplit           = "vertical"
+let g:UltiSnipsSnippetsDir         = expand("~/.vim/snippets/")
+let g:UltiSnipsSnippetDirectories  = ["snippets"]
+let g:UltiSnipsJumpForwardTrigger  = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 nnoremap <Leader>es <ESC>:UltiSnipsEdit<CR>
 " }}}
 "   Unite              : An incredible interface                   {{{
