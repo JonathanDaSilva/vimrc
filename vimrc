@@ -1,7 +1,7 @@
 " Basic Options      {{{
 
 set nocompatible
-set runtimepath=$VIM/vim74,~/.vim/,~/.vim/bundle/neobundle.vim/,~/.vim/snippets/python
+set runtimepath=$VIM/vim74,~/.vim/,~/.vim/bundle/neobundle.vim/,~/.vim/snippets/
 let mapleader=','
 set backspace=2
 set autoread autowrite
