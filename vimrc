@@ -121,8 +121,6 @@ nnoremap <Leader>bs :Unite neobundle/search -start-insert<CR>
 " }}}
 "   CtrlP              : Fuzzy Finder                              {{{
 NeoBundle 'kien/ctrlp.vim'
-NeoBundle 'JazzCore/ctrlp-cmatcher'
-let g:ctrlp_match_func = {'match' : 'matcher#cmatch' }
 " }}}
 "   YouCompleteMe      : AutoCompletion                            {{{
 NeoBundle 'Valloric/YouCompleteMe'
