@@ -267,6 +267,7 @@ autocmd BufWrite,BufRead,BufNewFile *.twig set filetype=jinja
 " }}}
 "   Sass {{{
 NeoBundle 'tpope/vim-haml'
+autocmd BufWrite,BufRead,BufNewFile *.sass set filetype=sass
 " }}}
 "   JS {{{
 au BufNewFile,BufRead,BufWrite *.js set tabstop=2 shiftwidth=2
