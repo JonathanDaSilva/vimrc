@@ -254,6 +254,9 @@ NeoBundle 'othree/html5.vim'
 " }}}
 "   Jade {{{
 NeoBundle 'digitaltoad/vim-jade'
+au BufNewFile,BufRead,BufWrite *.jade set filetype=jade
+autocmd FileType jade set commentstring=//-\ %s
+autocmd FileType jade set tabstop=2 shiftwidth=2
 " }}}
 "   Json {{{
 NeoBundle 'leshill/vim-json'

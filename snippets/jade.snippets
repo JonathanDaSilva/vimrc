@@ -1,28 +1,34 @@
 # Jade
 snippet doctype
-	doctype
-	html(lang="fr")
-		head
-			meta(charset="utf-8")
-			title Title of the page
-		body
+doctype
+html(lang="fr")
+  head
+    meta(charset="utf-8")
+    title Title of the page
+  body$0
+endsnippet
+
 snippet link
-	link(rel="stylesheet", href="/css/${1:style}.css")
-snippet angular
-	script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0-rc.2/angular.min.js")
-	//- script(src="http://code.angularjs.org/1.2.0-rc.2/angular-route.min.js")
-	//- script(src="http://code.angularjs.org/1.2.0-rc.2/angular-sanitize.min.js")
-	//- script(src="https://cdn.firebase.com/v0/firebase.js")
-	//- script(src="http://code.jquery.com/jquery-2.0.3.min.js")
-	//- script(src="https://cdn.firebase.com/libs/angularfire/0.3.0/angularfire.min.js")
+link(rel="stylesheet", href="/css/${1:style}.css")
+endsnippet
+
 snippet script
-	script(src="/js/${1:main}-min.js")
+script(src="/js/${1:main}.js")
+endsnippet
+
 snippet a
-	a(href="${1}", title="${2}")
+a(href="${1}", title="${2}")
+endsnippet
+
 snippet form
-	form(method="${1:post}")
+form(method="${1:post}")
+endsnippet
+
 # Angular
 snippet controller
-	ng-controller="${1:name}Ctrl"
+ng-controller="${1:name}Ctrl"
+endsnippet
+
 snippet model
-	ng-model="${1}"
+ng-model="${1}"
+endsnippet
