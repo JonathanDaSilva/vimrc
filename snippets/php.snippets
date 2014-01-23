@@ -1,13 +1,12 @@
 global !p
 from all import *
-from laravel import * 
+from laravel import *
 endglobal
 
 # ----------------------- PHP -----------------------
 snippet php "php tags"
 <?php
 ${1}
-?>
 endsnippet
 
 snippet class "class declaration"
@@ -45,10 +44,9 @@ class `!p snip.rv = fn.split('.')[0]` extends BaseController
 {
     public function $1($2)
     {
-        return View::make('`!p snip.rv = fn.split('.')[0].lower()`.$1', compact($3);
+        return View::make('`!p snip.rv = getName(fn, "Controller")`.$1', compact($3));
     }
 }
-?>
 endsnippet
 
 snippet view "View for a controller"
@@ -62,15 +60,15 @@ snippet seeder "Make a seeder file for laravel"
 <?php
 class `!p snip.rv = getFileName(fn)` extends Seeder {
 
-	public function run()
-	{
+    public function run()
+    {
         DB::table('`!p snip.rv = getName(fn, "TableSeeder")`')->truncate();
         $`!p snip.rv = getName(fn, "TableSeeder")`s = array(
             [$0
             ],
         );
         DB::table('`!p snip.rv = getName(fn, "TableSeeder")`')->insert($`!p snip.rv = getName(fn, "TableSeeder")`s);
-	}
+    }
 
 }
 endsnippet
