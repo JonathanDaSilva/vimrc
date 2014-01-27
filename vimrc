@@ -310,6 +310,8 @@ noremap r l
 "    Mouvement
 noremap e e
 noremap a b
+noremap A ^
+noremap E $
 "    Change Motion
 noremap v c
 noremap V C
@@ -333,7 +335,10 @@ noremap b <ESC>:redo<CR>
 noremap é <ESC>:undo<CR>
 "    Insert Mode
 noremap u a
+noremap U A
 noremap i i
+noremap I I
+vnoremap i I
 
 " }}}
 
