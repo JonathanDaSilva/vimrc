@@ -287,6 +287,9 @@ NeoBundle 'PProvost/vim-ps1'
 autocmd BufWrite,BufRead,BufNewFile *.ps1 set filetype=ps1
 autocmd FileType ps1 set commentstring=#\ %s
 " }}}
+"   DosIni {{{
+autocmd FileType dosini set commentstring=;%s
+"   }}}
 
 " }}}
 " BackUp             {{{
