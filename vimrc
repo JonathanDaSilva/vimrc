@@ -113,11 +113,15 @@ endfunction " }}}
 "   NeoBundle          : The package manager                       {{{
 call neobundle#rc(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
+let g:neobundle#install_max_processes = 2
 " mapping
 nnoremap <Leader>bi :Unite neobundle/install<CR>
 nnoremap <Leader>bu :Unite neobundle/update<CR>
 nnoremap <Leader>bc :NeoBundleClean<CR>
 nnoremap <Leader>bs :Unite neobundle/search -start-insert<CR>
+" }}}
+"   Vimproc            : A dll for Shougo plugins                  {{{
+NeoBundle 'Shougo/vimproc'
 " }}}
 "   CtrlP              : Fuzzy Finder                              {{{
 NeoBundle 'kien/ctrlp.vim'
@@ -141,7 +145,6 @@ nnoremap <Leader>es <ESC>:UltiSnipsEdit<CR>
 " }}}
 "   Unite              : An incredible interface                   {{{
 NeoBundle 'unite.vim'
-let g:neobundle#install_max_processes = 2
 let g:unite_source_history_yank_enable = 1
 let g:unite_enable_short_source_names = 1
 let g:unite_winheight = 10
@@ -154,9 +157,6 @@ vnoremap <Leader>= <ESC>:Tabular /=<CR>
 vnoremap <Leader><Leader>= <ESC>:Tabular /=><CR>
 vnoremap <Leader>: <ESC>:Tabular /:<CR>
 vnoremap <Leader><Leader>: <ESC>:Tabular /:\zs<CR>
-" }}}
-"   Vimproc            : A dll for Shougo plugins                  {{{
-NeoBundle 'Shougo/vimproc'
 " }}}
 "   NERDTree           : A sidebar filemanager                     {{{
 NeoBundle 'scrooloose/nerdtree'
