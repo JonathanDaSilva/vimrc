@@ -275,6 +275,9 @@ au BufNewFile,BufRead,BufWrite *.coffee set filetype=coffee
 autocmd FileType coffee set tabstop=2 shiftwidth=2
 autocmd FileType coffee set commentstring=#\ %s
 " }}}
+"   Grunt {{{
+au BufNewFile,BufRead,BufWrite Gruntfile.* set filetype=grunt.coffee
+" }}}
 
 "   PowerShell {{{
 NeoBundle 'PProvost/vim-ps1'

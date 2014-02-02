@@ -1,0 +1,153 @@
+global !p
+from all import complete
+endglobal
+
+snippet grunt "Create the init for a grunt project"
+module.exports = (grunt) ->
+  require('load-grunt-tasks')(grunt)
+
+  grunt.initConfig {$0
+  }
+
+  grunt.registerTask('default', [
+  ])
+endsnippet
+
+snippet watch "Create a basic configuration for the grunt-contrib-watch"
+watch: {
+  ${1:name}: {
+    files: ['$2']
+    tasks: ['${3:task}:${4:dist}']
+  }
+}$0
+endsnippet
+
+
+snippet clean "Create a basic configuration for the grunt-contrib-clean"
+clean: {
+  options:
+    force: true
+  ${1:dist}: {
+    src: [
+      ${2:"path/to/dir"}
+    ]
+  }
+}$0
+endsnippet
+
+
+snippet coffee "Create a basic configuration for the grunt-contrib-coffee"
+coffee: {
+  options:
+    join: true
+    bare: true
+  ${1:dist}: {
+    '$2.js': [$3]
+  }
+}$0
+endsnippet
+
+snippet compass "Create a basic configuration for the grunt-contrib-compass"
+compass: {
+  dist: {
+    options:
+      # Basic options
+      watch: false
+      relativeAssets: true
+      outputStyle: '$1`!p snip.rv = complete(t[1], ['nested', 'expanded', 'compact', 'compressed'])`'
+      basePath:        '${2:app}/'
+      sassDir:         'sass/'
+      cssDir:          'styles/'
+      imagesDir:       'img/'
+      javascriptsDir:  'scripts/'
+      fontsDir:        'fonts/'
+      # Load extension by the new way
+      extensionsDir
+      loadAll: true
+  }
+}$0
+endsnippet
+
+snippet jade "Create a basic configuration for the grunt-jade"
+jade: {
+  options:
+    client: false
+    compileDebug: true
+  jadeIndex: {
+    src: ['${1:app/}index.jade']
+    dest: '$1'
+  }
+  views: {
+    src: ['${2:app/views/}**.jade']
+    dest: '$2'
+  }
+}
+endsnippet
+
+snippet connect "Create a basic configuration for the grunt-contrib-connect"
+connect: {
+  dist: {
+    options:
+      hostname: 'localhost'
+      port: 8000
+      base: 'app'
+      keepalive: $1`!p snip.rv = complete(t[1], ['true', 'false'])`
+      livereload: $2`!p snip.rv = complete(t[2], ['true', 'false'])`
+      open: $3`!p snip.rv = complete(t[3], ['true', 'false'])`
+  }
+}$0
+endsnippet
+
+snippet ngmin "Create a basic configuration for the grunt-contrib-ngmin"
+ngmin: {
+  dist: {
+    src: ['$1']
+    dest: '$1'
+  }
+}
+endsnippet
+
+snippet uglify "Create a basic configuration for the grunt-contrib-uglify"
+uglify: {
+  options:
+    mangle: true
+    preserveComments: false
+    beautify: false
+  dist: {
+    files:
+      '$1': '$1'
+  }
+}
+endsnippet
+
+snippet cssmin "Create a basic configuration for the grunt-contrib-cssmin"
+cssmin: {
+  dist: {
+    files:
+      '$1': '$1'
+  }
+}
+endsnippet
+
+snippet copy "Create a basic configuration for the grunt-contrib-copy"
+copy: {
+  dist: {
+    src: '$1'
+    dest: '$2'
+  }
+}$0
+endsnippet
+
+snippet nodewebkit "Create a basic configuration for the grunt-node-webkit-builder"
+nodewebkit: {
+  options:
+    version: '0.8.3'
+    build_dir: 'build/'
+    keep_nw: true
+    mac: true
+    win: true
+    linux32: true
+    linux64: true
+  dist: ['dist/**/*']
+}
+endsnippet
