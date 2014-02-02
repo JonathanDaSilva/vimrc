@@ -340,11 +340,5 @@ vnoremap i I
 
 " }}}
 
-NeoBundle 'istib/vifm.vim'
-nnoremap <Leader>d :VsplitVifm<CR>
 " Need to test or configure
-NeoBundle 'majutsushi/tagbar'
 NeoBundle 'sjl/splice.vim'
-
-" Test
-set runtimepath+=~/.vim/bundle/unite-laravel
