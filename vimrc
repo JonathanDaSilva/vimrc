@@ -192,8 +192,8 @@ NeoBundle 'nathanaelkane/vim-indent-guides'
 let g:indent_guide_start_level=2
 let g:indent_guides_guide_size=1
 " }}}
-"   AutoClose          : Automaticly close everything              {{{
-NeoBundle 'Townk/vim-autoclose'
+"   DelimitMate        : Automaticly close everything              {{{
+NeoBundle 'Raimondi/delimitMate'
 " }}}
 "   MatchTagAlways     : Always found the closing tag              {{{
 NeoBundle 'Valloric/MatchTagAlways'
