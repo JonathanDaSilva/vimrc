@@ -194,6 +194,10 @@ let g:indent_guides_guide_size=1
 "   AutoClose          : Automaticly close everything              {{{
 NeoBundle 'Townk/vim-autoclose'
 " }}}
+"   MatchTagAlways     : Always found the closing tag              {{{
+NeoBundle 'Valloric/MatchTagAlways'
+" }}}
+
 
 " }}}
 " Apparence Options  {{{
