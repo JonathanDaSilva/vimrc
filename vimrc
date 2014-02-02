@@ -146,16 +146,7 @@ let g:unite_source_history_yank_enable = 1
 let g:unite_enable_short_source_names = 1
 let g:unite_winheight = 10
 let g:unite_split_rule = 'botright'
-nnoremap <leader>us :<C-u>Unite file_rec -start-insert<CR>
 nnoremap <leader>uh :<C-u>Unite history/yank -start-insert<CR>
-
-NeoBundle 'unite-colorscheme'
-nnoremap <Leader>uc :<C-u>Unite colorscheme -start-insert<CR>
-
-NeoBundle 'kannokanno/unite-todo'
-NeoBundle 'tsukkee/unite-tag'
-NeoBundle 'osyo-manga/unite-fold'
-NeoBundle 'Shougo/unite-ssh'
 "}}}
 "   Tabular            : Automaticly align caracter                {{{
 NeoBundle 'godlygeek/tabular'
