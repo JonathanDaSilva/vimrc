@@ -152,19 +152,22 @@ let g:unite_winheight = 10
 let g:unite_split_rule = 'botright'
 nnoremap <leader>uh :<C-u>Unite history/yank -start-insert<CR>
 "}}}
+"   VimFiler           : An incredible interface                   {{{
+NeoBundle 'Shougo/vimfiler.vim'
+autocmd FileType vimfiler nmap <buffer> r <Plug>(vimfiler_expand_tree)
+autocmd FileType vimfiler nmap <buffer> t <Plug>(vimfiler_loop_cursor_down)
+let g:vimfiler_as_default_explorer = 1
+let g:vimfiler_safe_mode_by_default = 0
+let g:vimfiler_force_overwrite_statusline = 0
+noremap <Leader>v :VimFilerCreate<Cr>
+noremap <Leader>nt :VimFilerCreate<Cr>
+"}}}
 "   Tabular            : Automaticly align caracter                {{{
 NeoBundle 'godlygeek/tabular'
 vnoremap <Leader>= <ESC>:Tabular /=<CR>
 vnoremap <Leader><Leader>= <ESC>:Tabular /=><CR>
 vnoremap <Leader>: <ESC>:Tabular /:<CR>
 vnoremap <Leader><Leader>: <ESC>:Tabular /:\zs<CR>
-" }}}
-"   NERDTree           : A sidebar filemanager                     {{{
-NeoBundle 'scrooloose/nerdtree'
-let g:NERDTreeMapOpenInTab="j"
-let g:NERDTreeMapOpenVSplit="k"
-noremap <Leader>nt <ESC>:NERDTreeToggle<CR>
-noremap <F3> <ESC>:NERDTree<CR>
 " }}}
 "   Airline            : Display a beautiful statusline            {{{
 NeoBundle 'bling/vim-airline'
