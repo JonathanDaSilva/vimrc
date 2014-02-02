@@ -8,7 +8,7 @@ set autoread autowrite
 set wrap textwidth=0 linebreak
 set clipboard=unnamed
 set ignorecase smartcase
-set hlsearch
+set nohlsearch
 " Edit Vimrc and reload vimrc
 nnoremap <Leader>ev <ESC>:e $myvimrc<CR>
 nnoremap <Leader>o  <ESC>:so $myvimrc<CR>
@@ -44,7 +44,7 @@ noremap wd  <Esc>:close<CR>
 noremap w<Space> <Esc>:vsplit<CR>
 noremap w<CR> <Esc>:split<CR>
 " Clear Search
-map <Leader><Leader><Space> :nohl<CR>
+map <Leader><Leader><Space> :set hlsearch!<CR>
 " Mouve lines
 nnoremap <up> ddkkp
 nnoremap <down> ddp
