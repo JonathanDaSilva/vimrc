@@ -307,6 +307,8 @@ set directory=~/.vim/tmp/swap//
 " }}}
 " BÉPO KeyBoard      {{{
 
+"    Escape
+inoremap <C-c> <Esc>
 "    Navigation
 noremap c h
 noremap t gj
