@@ -152,7 +152,7 @@ let g:unite_winheight = 10
 let g:unite_split_rule = 'botright'
 nnoremap <leader>uh :<C-u>Unite history/yank -start-insert<CR>
 "}}}
-"   VimFiler           : An incredible interface                   {{{
+"   VimFiler           : A Filemanager                             {{{
 NeoBundle 'Shougo/vimfiler.vim'
 autocmd FileType vimfiler nmap <buffer> r <Plug>(vimfiler_expand_tree)
 autocmd FileType vimfiler nmap <buffer> t <Plug>(vimfiler_loop_cursor_down)
