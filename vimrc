@@ -252,6 +252,9 @@ autocmd FileType jade set tabstop=2 shiftwidth=2
 "   Json {{{
 NeoBundle 'leshill/vim-json'
 " }}}
+"   PHP {{{
+autocmd FileType php set commentstring=//\ %s
+" }}}
 "   Blade Template {{{
 NeoBundle 'xsbeats/vim-blade'
 " }}}
