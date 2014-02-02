@@ -305,6 +305,7 @@ noremap r l
 noremap e e
 noremap a b
 noremap A ^
+noremap æ ^
 noremap E $
 "    Change Motion
 noremap v c
