@@ -113,7 +113,6 @@ endfunction " }}}
 "   NeoBundle          : The package manager                       {{{
 call neobundle#rc(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
-let g:neobundle#install_max_processes = 2
 " mapping
 nnoremap <Leader>bi :Unite neobundle/install<CR>
 nnoremap <Leader>bu :Unite neobundle/update<CR>
