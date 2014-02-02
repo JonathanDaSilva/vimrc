@@ -159,7 +159,7 @@ autocmd FileType vimfiler nmap <buffer> t <Plug>(vimfiler_loop_cursor_down)
 let g:vimfiler_as_default_explorer = 1
 let g:vimfiler_safe_mode_by_default = 0
 let g:vimfiler_force_overwrite_statusline = 0
-noremap <Leader>v :VimFilerCreate<Cr>
+noremap <Leader>nt :VimFilerCreate<Cr>
 "}}}
 "   Tabular            : Automaticly align caracter                {{{
 NeoBundle 'godlygeek/tabular'
@@ -202,7 +202,7 @@ NeoBundle 'Valloric/MatchTagAlways'
 " }}}
 "   ChooseWin          : Always found the closing tag              {{{
 NeoBundle 't9md/vim-choosewin'
-noremap <Leader>n <ESC>:ChooseWin<CR>
+noremap - <ESC>:ChooseWin<CR>
 " }}}
 
 
