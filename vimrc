@@ -124,8 +124,11 @@ NeoBundle 'Shougo/vimproc'
 " }}}
 "   CtrlP              : Fuzzy Finder                              {{{
 NeoBundle 'kien/ctrlp.vim'
-NeoBundle 'JazzCore/ctrlp-cmatcher'
-let g:ctrlp_match_func = {'match' : 'matcher#cmatch' }
+NeoBundle 'mattn/ctrlp-git'
+let ctrlp#git#system_function = 'vimproc#system'
+let g:ctrlp_cmd = 'CtrlPGitFiles'
+let g:ctrlp_show_hidden = 1
+let g:ctrlp_use_caching = 0
 " }}}
 "   YouCompleteMe      : AutoCompletion                            {{{
 NeoBundle 'Valloric/YouCompleteMe'
