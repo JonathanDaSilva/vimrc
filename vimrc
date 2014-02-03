@@ -60,6 +60,8 @@ vnoremap <C-s> <ESC>:w!<CR>
 nnoremap <C-w> <ESC>:q<CR>
 inoremap <C-w> <ESC>:q<CR>
 vnoremap <C-w> <ESC>:q<CR>
+" CTags
+noremap <F10> <ESC>:silent call vimproc#system('ctags -R')<CR>
 
 " }}}
 " WildIgnore         {{{
@@ -131,6 +133,8 @@ let ctrlp#git#system_function = 'vimproc#system'
 let g:ctrlp_cmd = 'CtrlPGitFiles'
 let g:ctrlp_show_hidden = 1
 let g:ctrlp_use_caching = 0
+noremap <C-i> <ESC>:CtrlPBufTag<CR>
+noremap <C-u> <ESC>:CtrlPTag<CR>
 " }}}
 "   YouCompleteMe      : AutoCompletion                            {{{
 NeoBundle 'Valloric/YouCompleteMe'
