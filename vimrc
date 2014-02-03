@@ -212,6 +212,7 @@ NeoBundle 'Valloric/MatchTagAlways'
 "   ChooseWin          : Always found the closing tag              {{{
 NeoBundle 't9md/vim-choosewin'
 noremap - <ESC>:ChooseWin<CR>
+let g:choosewin_overlay_enable = 1
 " }}}
 
 
