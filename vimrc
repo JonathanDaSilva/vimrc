@@ -1,6 +1,5 @@
 " Basic Options      {{{
 
-cd D:/Programmation/
 
 set nocompatible
 set runtimepath=$VIM/vim74,~/.vim/,~/.vim/bundle/neobundle.vim/,~/.vim/snippets/
