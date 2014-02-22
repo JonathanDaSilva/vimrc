@@ -29,7 +29,10 @@ vnoremap > >gv
 " }}}
 " Shortcut           {{{
 
+" Search
 nnoremap n nzz
+" Sort
+vnoremap <leader><leader>s :sort<cr>
 " Resize
 nnoremap <C-S-l> :vertical resize +5<CR>
 nnoremap <C-S-h> :vertical resize -5<CR>
