@@ -165,6 +165,7 @@ let g:unite_enable_short_source_names = 1
 let g:unite_winheight = 10
 let g:unite_split_rule = 'botright'
 nnoremap <leader>uh :<C-u>Unite history/yank -start-insert<CR>
+noremap  <C-y> <Esc>:Unite file -start-insert<CR>
 "}}}
 "   VimFiler           : A Filemanager                             {{{
 NeoBundle 'Shougo/vimfiler.vim'
