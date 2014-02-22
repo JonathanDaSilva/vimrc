@@ -270,6 +270,7 @@ NeoBundle 'tpope/vim-markdown'
 
 "   HTML {{{
 NeoBundle 'othree/html5.vim'
+autocmd FileType html set commentstring=<!--\ %s\ -->
 " }}}
 "   Jade {{{
 NeoBundle 'digitaltoad/vim-jade'
