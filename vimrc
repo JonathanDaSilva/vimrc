@@ -280,6 +280,7 @@ autocmd FileType jade set tabstop=2 shiftwidth=2
 " }}}
 "   Json {{{
 NeoBundle 'leshill/vim-json'
+autocmd BufWrite,BufRead,BufNewFile *.json set filetype=json
 " }}}
 "   PHP {{{
 autocmd FileType php set commentstring=//\ %s
