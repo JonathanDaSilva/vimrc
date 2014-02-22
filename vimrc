@@ -291,6 +291,7 @@ NeoBundle 'xsbeats/vim-blade'
 "   Twig Template {{{
 NeoBundle 'lepture/vim-jinja'
 autocmd BufWrite,BufRead,BufNewFile *.twig set filetype=jinja
+autocmd FileType jinja set commentstring={#\ %s\ #}
 " }}}
 "   Sass {{{
 NeoBundle 'tpope/vim-haml'
