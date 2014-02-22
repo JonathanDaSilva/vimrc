@@ -191,6 +191,7 @@ set laststatus=2
 NeoBundle 'mattn/emmet-vim'
 let g:user_emmet_install_global = 0
 autocmd FileType jinja,html EmmetInstall
+let g:user_emmet_leader_key='<C-l>'
 " }}}
 "   MultipleCursor     : Provide MultiCursor of ST                 {{{
 NeoBundle 'terryma/vim-multiple-cursors'
