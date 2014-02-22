@@ -138,6 +138,8 @@ let g:ctrlp_show_hidden = 1
 let g:ctrlp_use_caching = 0
 noremap <C-i> <ESC>:CtrlPBufTag<CR>
 noremap <C-u> <ESC>:CtrlPTag<CR>
+noremap ĳ <Esc>:CtrlPGitFiles<CR>
+noremap Ĳ <Esc>:CtrlP<CR>
 " }}}
 "   YouCompleteMe      : AutoCompletion                            {{{
 NeoBundle 'Valloric/YouCompleteMe'
