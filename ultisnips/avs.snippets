@@ -1,0 +1,155 @@
+snippet v
+video = last
+endsnippet
+
+snippet a
+audio = last
+endsnippet
+
+snippet dgi
+DGSource("${1:name}.dgi", deinterlace=2, resize_w=1280, resize_h=720, crop_t=0, crop_r=0, crop_b=0, crop_l=0)
+endsnippet
+
+snippet wav
+WAVSource()
+endsnippet
+
+snippet dss
+DirectShowSource("${1:name}")
+endsnippet
+
+snippet avi
+AviSource("${1:name}")
+endsnippet
+
+snippet image
+ImageSource("%02d.bmp", start=0, end=50, fps=24)
+endsnippet
+
+snippet rbg24
+ConvertToRGB24()
+endsnippet
+
+snippet rgb32
+ConvertToRGB32()
+endsnippet
+
+snippet yuy2
+ConvertToYUY2()
+endsnippet
+
+snippet yv12
+ConvertToYV12()
+endsnippet
+
+snippet mc
+MergeChroma(${1:name})
+endsnippet
+
+snippet ml
+MergeLuma(${1:name})
+endsnippet
+
+snippet merge
+Merge(${1:name})
+endsnippet
+
+snippet border
+AddBorders(0, 0, 0, 0)
+endsnippet
+
+snippet crop
+Crop(0, 0, -0, -0)
+endsnippet
+
+snippet size
+Spline36Resize(1280, 720)
+endsnippet
+
+snippet resize
+Lanczos4Resize(1280, 720)
+endsnippet
+
+snippet psize
+PointResize(1280, 720)
+endsnippet
+
+snippet tl
+TurnLeft()
+endsnippet
+
+snippet tr
+TurnRight()
+endsnippet
+
+snippet turn
+Turn180()
+endsnippet
+
+snippet fps
+AssumeFPS(24000, 1001, true)
+endsnippet
+
+snippet trim
+Trim(start, end)
+endsnippet
+
+snippet mux
+AudioDubEx(video, audio)
+endsnippet
+
+snippet delay
+DelayAudio(second)
+endsnippet
+
+snippet ka
+KillAudio()
+endsnippet
+
+snippet kv
+KillVideo()
+endsnippet
+
+snippet luma
+Histogram("luma")
+endsnippet
+
+snippet stackh
+StackHorizontal(clip1, clip2)
+endsnippet
+
+snippet stackv
+StackVertical(clip1, clip2)
+endsnippet
+
+snippet compare
+Compare(clip1, clip2)
+endsnippet
+
+snippet sharpen
+UnFilter(HSharp, VSharp)
+endsnippet
+
+snippet mftoon
+mftoon(50)
+endsnippet
+
+snippet tfm
+TFM()
+endsnippet
+
+snippet decimate
+TDecimate()
+endsnippet
+
+snippet aa
+SangNom()
+endsnippet
+
+snippet depan
+i = ConvertToYV12()
+mdata = DePanEstimate(i)
+DePanInterleave(i, data=mdata)
+FluxSmooth()
+SelectEvery(3, 1)
+endsnippet
