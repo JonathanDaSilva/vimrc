@@ -298,8 +298,10 @@ autocmd FileType jinja set commentstring={#\ %s\ #}
 "   Sass {{{
 NeoBundle 'tpope/vim-haml'
 autocmd BufWrite,BufRead,BufNewFile *.sass set filetype=sass
+autocmd FileType sass set commentstring=//\ %s
 " }}}
 "   JS {{{
+autocmd FileType javascript set commentstring=//\ %s
 " }}}
 "   CoffeeScript {{{
 NeoBundle 'kchmck/vim-coffee-script'
