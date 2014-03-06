@@ -219,7 +219,9 @@ NeoBundle 'Valloric/MatchTagAlways'
 " }}}
 "   ChooseWin          : Easy switching between tabs and split                {{{
 NeoBundle 't9md/vim-choosewin'
-noremap - <ESC>:ChooseWin<CR>
+nnoremap - <ESC>:ChooseWin<CR>
+vnoremap - <ESC>:ChooseWin<CR>
+cnoremap - <ESC>:ChooseWin<CR>
 let g:choosewin_overlay_enable = 1
 " }}}
 
