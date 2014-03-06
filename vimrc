@@ -50,11 +50,6 @@ noremap w<CR> <Esc>:split<CR>
 noremap <leader>nt :tabnew<CR>
 " Switching between highlight search or not
 map <Leader><Leader><Space> :set hlsearch!<CR>
-" Mouve lines
-nnoremap <up> ddkkp
-nnoremap <down> ddp
-nnoremap <right> >>
-nnoremap <left> <<
 " Save
 nnoremap <C-s> <ESC>:w!<CR>
 inoremap <C-s> <ESC>:w!<CR>
@@ -226,11 +221,17 @@ vnoremap - <ESC>:ChooseWin<CR>
 cnoremap - <ESC>:ChooseWin<CR>
 let g:choosewin_overlay_enable = 1
 " }}}
-
 "   WhiteSpace         : Showing whitespace and delete it automitcly          {{{
 NeoBundle 'ntpeters/vim-better-whitespace'
 autocmd VimEnter * ToggleStripWhitespaceOnSave
 autocmd FileType unite ToggleWhitespace
+" }}}
+"   Move               : Allow to move block or line of code easyly           {{{
+NeoBundle 'matze/vim-move'
+map <A-t> <Plug>MoveLineDown
+map <A-s> <Plug>MoveLineUp
+vmap <A-t> <Plug>MoveBlockDown
+vmap <A-s> <Plug>MoveBlockUp
 " }}}
 
 " }}}
