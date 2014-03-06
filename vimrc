@@ -46,6 +46,8 @@ noremap wr  <C-w>l
 noremap wd  <Esc>:close<CR>
 noremap w<Space> <Esc>:vsplit<CR>
 noremap w<CR> <Esc>:split<CR>
+" New Tab shortcut
+noremap <leader>nt :tabnew<CR>
 " Switching between highlight search or not
 map <Leader><Leader><Space> :set hlsearch!<CR>
 " Mouve lines
@@ -174,7 +176,7 @@ autocmd FileType vimfiler nmap <buffer> t <Plug>(vimfiler_loop_cursor_down)
 let g:vimfiler_as_default_explorer = 1
 let g:vimfiler_safe_mode_by_default = 0
 let g:vimfiler_force_overwrite_statusline = 0
-noremap <Leader>nt :VimFilerCreate<Cr>
+noremap <Leader>v :VimFilerCreate<Cr>
 "}}}
 "   Tabular            : Automaticly align caracter                           {{{
 NeoBundle 'godlygeek/tabular'
