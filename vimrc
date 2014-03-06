@@ -207,6 +207,7 @@ let g:EasyMotion_mapping_F = '<Leader>s'
 " }}}
 "   IndentGuide        : Display indent guides                                {{{
 NeoBundle 'nathanaelkane/vim-indent-guides'
+autocmd VimEnter * IndentGuidesToggle
 let g:indent_guide_start_level=2
 let g:indent_guides_guide_size=1
 " }}}
