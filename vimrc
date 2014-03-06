@@ -29,16 +29,16 @@ vnoremap > >gv
 " }}}
 " Shortcut           {{{
 
-" Search
+" Search and center
 nnoremap n nzz
-" Sort
+" Alphabetical sorting selection
 vnoremap <leader><leader>s :sort<cr>
 " Resize
 nnoremap <C-S-l> :vertical resize +5<CR>
 nnoremap <C-S-h> :vertical resize -5<CR>
 " Help coding
 inoremap .. ->
-" Window
+" Window Spliting
 noremap wc  <C-w>h
 noremap wt  <C-w>j
 noremap ws  <C-w>k
@@ -46,7 +46,7 @@ noremap wr  <C-w>l
 noremap wd  <Esc>:close<CR>
 noremap w<Space> <Esc>:vsplit<CR>
 noremap w<CR> <Esc>:split<CR>
-" Clear Search
+" Switching between highlight search or not
 map <Leader><Leader><Space> :set hlsearch!<CR>
 " Mouve lines
 nnoremap <up> ddkkp
@@ -125,10 +125,10 @@ nnoremap <Leader>bu :Unite neobundle/update<CR>
 nnoremap <Leader>bc :NeoBundleClean<CR>
 nnoremap <Leader>bs :Unite neobundle/search -start-insert<CR>
 " }}}
-"   Vimproc            : A dll for Shougo plugins                  {{{
+"   Vimproc            : A dll for Shougo plugins                             {{{
 NeoBundle 'Shougo/vimproc'
 " }}}
-"   CtrlP              : Fuzzy Finder                              {{{
+"   CtrlP              : Fuzzy Finder                                         {{{
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'mattn/ctrlp-git'
 let ctrlp#git#system_function = 'vimproc#system'
@@ -140,14 +140,14 @@ noremap <C-u> <ESC>:CtrlPTag<CR>
 noremap ĳ <Esc>:CtrlPGitFiles<CR>
 noremap Ĳ <Esc>:CtrlP<CR>
 " }}}
-"   YouCompleteMe      : AutoCompletion                            {{{
+"   YouCompleteMe      : AutoCompletion                                       {{{
 NeoBundle 'Valloric/YouCompleteMe'
 let g:ycm_key_list_select_completion   = ['<c-j>']
 let g:ycm_key_list_previous_completion = ['<c-k>']
 let g:ycm_key_invoke_completion        = '<C-Space>'
 let g:ycm_use_ultisnips_completer      = 1
 " }}}
-"   UltiSnips          : The best snippets manager                 {{{
+"   UltiSnips          : The best snippets manager                            {{{
 NeoBundle 'SirVer/ultisnips'
 let g:UltiSnipsEditSplit           = "vertical"
 let g:UltiSnipsSnippetsDir         = expand("~/.vim/ultisnips/")
@@ -156,7 +156,7 @@ let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 set runtimepath+=~/.vim/ultisnips/ " Need to point to the parent pythonx directory script
 nnoremap <Leader>es <ESC>:UltiSnipsEdit<CR>
 " }}}
-"   Unite              : An incredible interface                   {{{
+"   Unite              : An incredible interface                              {{{
 NeoBundle 'unite.vim'
 let g:unite_source_history_yank_enable = 1
 let g:unite_enable_short_source_names = 1
@@ -165,7 +165,7 @@ let g:unite_split_rule = 'botright'
 nnoremap <leader>uh :<C-u>Unite history/yank -start-insert<CR>
 noremap  <C-y> <Esc>:Unite file -start-insert<CR>
 "}}}
-"   VimFiler           : A Filemanager                             {{{
+"   VimFiler           : A Filemanager                                        {{{
 NeoBundle 'Shougo/vimfiler.vim'
 autocmd FileType vimfiler nmap <buffer> r <Plug>(vimfiler_expand_tree)
 autocmd FileType vimfiler nmap <buffer> t <Plug>(vimfiler_loop_cursor_down)
@@ -174,47 +174,47 @@ let g:vimfiler_safe_mode_by_default = 0
 let g:vimfiler_force_overwrite_statusline = 0
 noremap <Leader>nt :VimFilerCreate<Cr>
 "}}}
-"   Tabular            : Automaticly align caracter                {{{
+"   Tabular            : Automaticly align caracter                           {{{
 NeoBundle 'godlygeek/tabular'
 vnoremap <Leader>= <ESC>:Tabular /=<CR>
 vnoremap <Leader><Leader>= <ESC>:Tabular /=><CR>
 vnoremap <Leader>: <ESC>:Tabular /:<CR>
 vnoremap <Leader><Leader>: <ESC>:Tabular /:\zs<CR>
 " }}}
-"   Airline            : Display a beautiful statusline            {{{
+"   Airline            : Display a beautiful statusline                       {{{
 NeoBundle 'bling/vim-airline'
 set laststatus=2
 " }}}
-"   Emmet              : Expand HTML code                          {{{
+"   Emmet              : Expand HTML code                                     {{{
 NeoBundle 'mattn/emmet-vim'
 let g:user_emmet_install_global = 0
 autocmd FileType jinja,html EmmetInstall
 let g:user_emmet_leader_key='<C-l>'
 " }}}
-"   MultipleCursor     : Provide MultiCursor of ST                 {{{
+"   MultipleCursor     : Provide MultiCursor of ST                            {{{
 NeoBundle 'terryma/vim-multiple-cursors'
 " }}}
-"   Commantary         : Comment your files                        {{{
+"   Commantary         : Comment your files                                   {{{
 NeoBundle 'tpope/vim-commentary'
 " }}}
-"   EasyMotion         : Move quickly into your files              {{{
+"   EasyMotion         : Move quickly into your files                         {{{
 NeoBundle 'Lokaltog/vim-easymotion'
 let g:EasyMotion_leader_key = '<Leader><Leader><Leader>'
 let g:EasyMotion_mapping_f = '<Leader>t'
 let g:EasyMotion_mapping_F = '<Leader>s'
 " }}}
-"   IndentGuide        : Display indent guides                     {{{
+"   IndentGuide        : Display indent guides                                {{{
 NeoBundle 'nathanaelkane/vim-indent-guides'
 let g:indent_guide_start_level=2
 let g:indent_guides_guide_size=1
 " }}}
-"   DelimitMate        : Automaticly close everything              {{{
+"   DelimitMate        : Automaticly close everything                         {{{
 NeoBundle 'Raimondi/delimitMate'
 " }}}
-"   MatchTagAlways     : Always found the closing tag              {{{
+"   MatchTagAlways     : Always found the closing tag                         {{{
 NeoBundle 'Valloric/MatchTagAlways'
 " }}}
-"   ChooseWin          : Always found the closing tag              {{{
+"   ChooseWin          : Easy switching between tabs and split                {{{
 NeoBundle 't9md/vim-choosewin'
 noremap - <ESC>:ChooseWin<CR>
 let g:choosewin_overlay_enable = 1
