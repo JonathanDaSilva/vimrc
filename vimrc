@@ -37,9 +37,7 @@ vnoremap <leader><leader>s :sort<cr>
 nnoremap <C-S-l> :vertical resize +5<CR>
 nnoremap <C-S-h> :vertical resize -5<CR>
 " Help coding
-inoremap <C-v> ..
 inoremap .. ->
-noremap <Leader>a o<ESC><Up>
 " Window
 noremap wc  <C-w>h
 noremap wt  <C-w>j
@@ -247,17 +245,11 @@ set synmaxcol=800
 set relativenumber
 set number
 
-" Show invisible caracterset list
-set nolist listchars=eol:¬
-set lazyredraw
-set matchtime=3
-
 " }}}
 " Filetype Options   {{{
 
 "   Vim {{{
 autocmd! BufRead,BufNewFile *.vim,vimrc,_vimrc set foldmethod=marker foldmarker={{{,}}} foldlevel=0 foldenable noautoindent
-" autocmd! BufWrite *.vim,vimrc,_vimrc source %
 autocmd FileType vim set commentstring=\"\ %s
 " }}}
 
@@ -284,9 +276,6 @@ autocmd BufWrite,BufRead,BufNewFile *.json set filetype=json
 " }}}
 "   PHP {{{
 autocmd FileType php set commentstring=//\ %s
-" }}}
-"   Blade Template {{{
-NeoBundle 'xsbeats/vim-blade'
 " }}}
 "   Twig Template {{{
 NeoBundle 'lepture/vim-jinja'
@@ -376,6 +365,3 @@ noremap I I
 vnoremap i I
 
 " }}}
-
-" Need to test or configure
-NeoBundle 'sjl/splice.vim'
