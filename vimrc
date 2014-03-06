@@ -227,6 +227,11 @@ cnoremap - <ESC>:ChooseWin<CR>
 let g:choosewin_overlay_enable = 1
 " }}}
 
+"   WhiteSpace         : Showing whitespace and delete it automitcly          {{{
+NeoBundle 'ntpeters/vim-better-whitespace'
+autocmd VimEnter * ToggleStripWhitespaceOnSave
+autocmd FileType unite ToggleWhitespace
+" }}}
 
 " }}}
 " Apparence Options  {{{
