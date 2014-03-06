@@ -3,7 +3,7 @@
 noremap <F1> <ESC>:h <Right>
 
 set nocompatible
-set runtimepath=$VIM/vim74,~/.vim/,~/.vim/bundle/neobundle.vim/
+set runtimepath=$VIM/vim74,~/.vim/
 let mapleader=','
 set backspace=2
 set autoread autowrite
@@ -117,7 +117,8 @@ endfunction " }}}
 " }}}
 " Plugins Options    {{{
 
-"   NeoBundle          : The package manager                       {{{
+"   NeoBundle          : The package manager                                  {{{
+set runtimepath+=~/.vim/bundle/neobundle.vim/
 call neobundle#rc(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 " mapping
