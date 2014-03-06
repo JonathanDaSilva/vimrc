@@ -67,11 +67,12 @@ noremap <F10> <ESC>:silent call vimproc#system('ctags -R')<CR>
 " }}}
 " WildIgnore         {{{
 
-set wildignore =*\\tmp\\*,**\\sass-cache\\**        " Temporay directory
-set wildignore+=**\\node_modules\\**,**\\build\\**  " ******************
-set wildignore+=**\\bower_components\\**            " ******************
+set wildignore =*\\tmp\\*,**\\sass-cache\\**        " Temporary directory
+set wildignore+=**\\node_modules\\**,**\\build\\**  " *******************
+set wildignore+=**\\bower_components\\**            " *******************
+set wildignore+=**\\vendor\\**,**\\packages\**      " *******************
 
-set wildignore+=*.psd,*.ai,*.pdf                    " Adobe file
+set wildignore+=*.psd,*.ai,*.pdf                    " Adobe files
 
 set wildignore+=*.html,*.js,*.css                   " Most of the time I use preprocessor so don't care
 
@@ -79,15 +80,16 @@ set wildignore+=.hg,.git,.svn                       " Version control
 set wildignore+=*.aux,*.out,*.toc                   " LaTeX intermediate files
 set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg      " binary images
 set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest    " compiled object files
-set wildignore+=*.zip,*.tar.*,*.tar,*.rar,*.7z      " archive
+set wildignore+=*.zip,*.tar*,*.rar,*.7z             " archive
 set wildignore+=*.spl                               " compiled spelling word lists
 set wildignore+=*.swp                               " Vim swap files
-set wildignore+=*.DS_Store                          " OSX bullshit
+set wildignore+=.DS_Store                           " OSX bullshit
+set wildignore+=Thumbs.db                           " Windows bullshit
 
 set wildignore+=*.luac                              " Lua byte code
 
 set wildignore+=migrations                          " Django migrations
-set wildignore+=*.pyc                               " Python binary
+set wildignore+=*.pyc                               " Python byte code
 
 "}}}
 " Fold Options       {{{
