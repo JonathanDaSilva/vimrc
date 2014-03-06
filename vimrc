@@ -17,7 +17,7 @@ nnoremap <Leader>o  <ESC>:so $myvimrc<CR>
 nnoremap <Leader>af <ESC>:so %<CR>
 " Indent
 set autoindent smartindent
-set tabstop=4 shiftwidth=4 expandtab
+set tabstop=2 shiftwidth=2 expandtab
 set shiftround
 " fileencoding
 set encoding=utf-8 fileencoding=utf-8
@@ -273,7 +273,6 @@ autocmd FileType html set commentstring=<!--\ %s\ -->
 NeoBundle 'digitaltoad/vim-jade'
 au BufNewFile,BufRead,BufWrite *.jade set filetype=jade
 autocmd FileType jade set commentstring=//-\ %s
-autocmd FileType jade set tabstop=2 shiftwidth=2
 " }}}
 "   Json {{{
 NeoBundle 'leshill/vim-json'
@@ -281,6 +280,7 @@ autocmd BufWrite,BufRead,BufNewFile *.json set filetype=json
 " }}}
 "   PHP {{{
 autocmd FileType php set commentstring=//\ %s
+autocmd FileType php set tabstop=4 shiftwidth=4
 " }}}
 "   Twig Template {{{
 NeoBundle 'lepture/vim-jinja'
@@ -292,12 +292,10 @@ NeoBundle 'tpope/vim-haml'
 autocmd BufWrite,BufRead,BufNewFile *.sass set filetype=sass
 " }}}
 "   JS {{{
-au BufNewFile,BufRead,BufWrite *.js set tabstop=2 shiftwidth=2
 " }}}
 "   CoffeeScript {{{
 NeoBundle 'kchmck/vim-coffee-script'
 au BufNewFile,BufRead,BufWrite *.coffee set filetype=coffee
-autocmd FileType coffee set tabstop=2 shiftwidth=2
 autocmd FileType coffee set commentstring=#\ %s
 " }}}
 "   Grunt {{{
