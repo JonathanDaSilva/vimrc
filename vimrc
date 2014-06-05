@@ -131,13 +131,11 @@ NeoBundle 'Shougo/vimproc'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'mattn/ctrlp-git'
 let ctrlp#git#system_function = 'vimproc#system'
-let g:ctrlp_cmd = 'CtrlPGitFiles'
+let g:ctrlp_cmd = 'CtrlPGit'
 let g:ctrlp_show_hidden = 1
 let g:ctrlp_use_caching = 0
-noremap <C-i> <ESC>:CtrlPBufTag<CR>
+noremap <C-i> <ESC>:CtrlPGitFiles<CR>
 noremap <C-u> <ESC>:CtrlPTag<CR>
-noremap ĳ <Esc>:CtrlPGitFiles<CR>
-noremap Ĳ <Esc>:CtrlP<CR>
 " }}}
 "   YouCompleteMe      : AutoCompletion                                       {{{
 NeoBundle 'Valloric/YouCompleteMe'
@@ -218,13 +216,11 @@ NeoBundle 'Valloric/MatchTagAlways'
 NeoBundle 't9md/vim-choosewin'
 nnoremap - <ESC>:ChooseWin<CR>
 vnoremap - <ESC>:ChooseWin<CR>
-cnoremap - <ESC>:ChooseWin<CR>
-let g:choosewin_overlay_enable = 1
 " }}}
 "   WhiteSpace         : Showing whitespace and delete it automitcly          {{{
 NeoBundle 'ntpeters/vim-better-whitespace'
 autocmd VimEnter * ToggleStripWhitespaceOnSave
-autocmd FileType unite ToggleWhitespace
+autocmd VimEnter,VimLeave unite ToggleWhitespace
 " }}}
 "   Move               : Allow to move block or line of code easyly           {{{
 NeoBundle 'matze/vim-move'
@@ -250,7 +246,7 @@ set go=""
 " Hide my mouse I don't use it
 set mousehide
 
-set guifont=Source\ Code\ Pro\ Medium:h12
+set guifont=Source\ Code\ Pro\ Medium:h14
 syntax on
 set synmaxcol=800
 
@@ -289,6 +285,11 @@ autocmd BufWrite,BufRead,BufNewFile *.json set filetype=json
 "   PHP {{{
 autocmd FileType php set commentstring=//\ %s
 autocmd FileType php set tabstop=4 shiftwidth=4
+" }}}
+"   Ruby {{{
+autocmd BufWrite,BufRead,BufNewFile Berksfile   set filetype=ruby
+autocmd BufWrite,BufRead,BufNewFile Vagrantfile set filetype=ruby
+autocmd FileType ruby set commentstring=#\ %s
 " }}}
 "   Twig Template {{{
 NeoBundle 'lepture/vim-jinja'
