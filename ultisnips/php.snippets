@@ -10,7 +10,8 @@ ${1}
 endsnippet
 
 snippet class "class declaration"
-class ${1:Name} extends ${2:Name} {$0
+class ${1:Name} extends ${2:Name}
+{$0
 }
 endsnippet
 
@@ -98,4 +99,42 @@ endsnippet
 
 snippet field
 $table->$1`!p snip.rv = complete(t[1], ['increments','bigIncrements','string','integer','bigInteger','float','boolean','timestamp','softDeletes','text'])`($2);
+endsnippet
+
+snippet facade
+<?php
+namespace $1;
+
+use Illuminate\Support\Facades\Facade;
+
+/**
+ * @see \\$1\\$2
+ */
+class $2Facade extends Facade
+{
+    protected static function getFacadeAccessor()
+    {
+        return '$3';
+    }
+}
+endsnippet
+
+snippet provider
+<?php
+namespace $1;
+
+use Illuminate\Support\ServiceProvider;
+use Illuminate\Foundation\AliasLoader;
+
+class $2ServiceProvider extends ServiceProvider {
+
+    public function register()
+    {
+        $this->app->bindShared('$3', function()
+        {
+            return new $1\$2;
+        });
+    }
+
+}
 endsnippet
