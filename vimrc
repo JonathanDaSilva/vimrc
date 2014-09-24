@@ -269,6 +269,10 @@ autocmd FileType text set filetype=markdown
 NeoBundle 'tpope/vim-markdown'
 " }}}
 
+"   QML {{{
+NeoBundle 'peterhoeg/vim-qml'
+" }}}
+
 "   HTML {{{
 NeoBundle 'othree/html5.vim'
 autocmd FileType html set commentstring=<!--\ %s\ -->
@@ -316,6 +320,7 @@ au BufNewFile,BufRead,BufWrite Gruntfile.* set filetype=grunt.coffee
 "   PowerShell {{{
 NeoBundle 'PProvost/vim-ps1'
 autocmd BufWrite,BufRead,BufNewFile *.ps1 set filetype=ps1
+autocmd BufWrite,BufRead,BufNewFile *.psm1 set filetype=ps1
 autocmd FileType ps1 set commentstring=#\ %s
 " }}}
 "   DosIni {{{
