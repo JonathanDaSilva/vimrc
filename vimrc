@@ -146,8 +146,6 @@ let g:ycm_use_ultisnips_completer      = 1
 NeoBundle 'SirVer/ultisnips'
 let g:UltiSnipsEditSplit           = "vertical"
 let g:UltiSnipsSnippetsDir         = expand("~/.vim/ultisnips/")
-let g:UltiSnipsJumpForwardTrigger  = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 set runtimepath+=~/.vim/ultisnips/ " Need to point to the parent pythonx directory script
 nnoremap <Leader>es <ESC>:UltiSnipsEdit<CR>
 " }}}
