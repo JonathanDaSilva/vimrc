@@ -146,6 +146,9 @@ let g:ycm_global_ycm_extra_conf               = '~/.vim/.ycm_extra_conf.py'
 let g:ycm_cache_omnifunc                      = 0
 let g:ycm_enable_diagnostic_signs             = 1
 "   }}}
+"   Syntastic          : Synthax Checker                                      {{{
+NeoBundle 'scrooloose/syntastic'
+"   }}}
 "   UltiSnips          : The best snippets manager                            {{{
 NeoBundle 'SirVer/ultisnips'
 let g:UltiSnipsEditSplit           = "vertical"
