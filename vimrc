@@ -252,6 +252,10 @@ autocmd FileType text set filetype=markdown
 NeoBundle 'tpope/vim-markdown'
 "   }}}
 
+"   CMake {{{
+NeoBundle 'jansenm/vim-cmake'
+autocmd FileType cmake set commentstring=#%s
+"   }}}
 "   C++ {{{
 NeoBundle 'peterhoeg/vim-qml'
 autocmd BufWrite,BufRead,BufNewFile *.hpp set filetype=hpp.cpp
