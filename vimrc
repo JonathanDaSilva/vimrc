@@ -283,9 +283,11 @@ autocmd FileType php set tabstop=4 shiftwidth=4
 "   Ruby {{{
 autocmd BufWrite,BufRead,BufNewFile Vagrantfile set filetype=vagrant.ruby
 autocmd FileType ruby set commentstring=#%s
+autocmd FileType ruby set tabstop=4 shiftwidth=4
 "   }}}
 "   Python {{{
 autocmd FileType python set commentstring=#%s
+autocmd FileType python set tabstop=4 shiftwidth=4
 "   }}}
 
 "   Sass {{{
