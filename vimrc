@@ -234,78 +234,89 @@ set number
 
 " }}}
 " Filetype Options   {{{
-
 "   Vim {{{
 autocmd! BufRead,BufNewFile *.vim,vimrc,_vimrc set foldmethod=marker foldmarker={{{,}}} foldlevel=0 foldenable noautoindent
 autocmd FileType vim set commentstring=\"\ %s
-" }}}
-
-"   Text {{{
-autocmd FileType text set filetype=markdown
-" }}}
-"   MarkDown {{{
-NeoBundle 'tpope/vim-markdown'
-" }}}
-
-"   QML {{{
-NeoBundle 'peterhoeg/vim-qml'
-" }}}
-
-"   HTML {{{
-NeoBundle 'othree/html5.vim'
-autocmd FileType html set commentstring=<!--\ %s\ -->
-" }}}
-"   Jade {{{
-NeoBundle 'digitaltoad/vim-jade'
-au BufNewFile,BufRead,BufWrite *.jade set filetype=jade
-autocmd FileType jade set commentstring=//-\ %s
-" }}}
-"   Json {{{
-NeoBundle 'leshill/vim-json'
-autocmd BufWrite,BufRead,BufNewFile *.json set filetype=json
-" }}}
-"   PHP {{{
-autocmd FileType php set commentstring=//\ %s
-autocmd FileType php set tabstop=4 shiftwidth=4
-" }}}
-"   Ruby {{{
-autocmd BufWrite,BufRead,BufNewFile Berksfile   set filetype=ruby
-autocmd BufWrite,BufRead,BufNewFile Vagrantfile set filetype=ruby
-autocmd FileType ruby set commentstring=#\ %s
-" }}}
-"   Twig Template {{{
-NeoBundle 'lepture/vim-jinja'
-autocmd BufWrite,BufRead,BufNewFile *.twig set filetype=jinja
-autocmd FileType jinja set commentstring={#\ %s\ #}
-" }}}
-"   Sass {{{
-NeoBundle 'tpope/vim-haml'
-autocmd BufWrite,BufRead,BufNewFile *.sass set filetype=sass
-autocmd FileType sass set commentstring=//\ %s
-" }}}
-"   JS {{{
-autocmd FileType javascript set commentstring=//\ %s
-" }}}
-"   CoffeeScript {{{
-NeoBundle 'kchmck/vim-coffee-script'
-au BufNewFile,BufRead,BufWrite *.coffee set filetype=coffee
-autocmd FileType coffee set commentstring=#\ %s
-" }}}
-"   Grunt {{{
-au BufNewFile,BufRead,BufWrite Gruntfile.* set filetype=grunt.coffee
-" }}}
-
+"   }}}
 "   PowerShell {{{
 NeoBundle 'PProvost/vim-ps1'
 autocmd BufWrite,BufRead,BufNewFile *.ps1 set filetype=ps1
 autocmd BufWrite,BufRead,BufNewFile *.psm1 set filetype=ps1
-autocmd FileType ps1 set commentstring=#\ %s
-" }}}
+"   }}}
+
+"   Text {{{
+autocmd FileType text set filetype=markdown
+"   }}}
+"   MarkDown {{{
+NeoBundle 'tpope/vim-markdown'
+"   }}}
+
+"   C++ {{{
+NeoBundle 'peterhoeg/vim-qml'
+autocmd BufWrite,BufRead,BufNewFile *.hpp set filetype=hpp.cpp
+autocmd BufWrite,BufRead,BufNewFile *.qml set filetype=qml
+autocmd BufWrite,BufRead,BufNewFile *.qrc set filetype=qrc.xml
+"   }}}
+
+"   HTML {{{
+NeoBundle 'othree/html5.vim'
+autocmd FileType html set commentstring=<!--\ %s\ -->
+"   }}}
+"   Twig Template {{{
+NeoBundle 'lepture/vim-jinja'
+autocmd BufWrite,BufRead,BufNewFile *.twig set filetype=jinja
+autocmd FileType jinja set commentstring={#\ %s\ #}
+"   }}}
+"   Jade {{{
+NeoBundle 'digitaltoad/vim-jade'
+au BufNewFile,BufRead,BufWrite *.jade set filetype=jade
+autocmd FileType jade set commentstring=//-\ %s
+"   }}}
+
+"   PHP {{{
+autocmd FileType php set commentstring=//\ %s
+autocmd FileType php set tabstop=4 shiftwidth=4
+"   }}}
+"   Ruby {{{
+autocmd FileType ruby set commentstring=#\ %s
+autocmd BufWrite,BufRead,BufNewFile Vagrantfile set filetype=vagrant.ruby
+"   }}}
+
+"   Sass {{{
+NeoBundle 'tpope/vim-haml'
+autocmd BufWrite,BufRead,BufNewFile *.sass set filetype=sass
+autocmd FileType sass set commentstring=//\ %s
+"   }}}
+
+"   JavaScript {{{
+autocmd BufWrite,BufRead,BufNewFile *.es6 set filetype=javascript
+"   }}}
+"   AtScript {{{
+autocmd BufWrite,BufRead,BufNewFile *.ats set filetype=atscript.javascript
+"   }}}
+"   CoffeeScript {{{
+NeoBundle 'kchmck/vim-coffee-script'
+autocmd FileType coffee set commentstring=#\ %s
+autocmd BufNewFile,BufRead,BufWrite *.coffee set filetype=coffee
+"   }}}
+
+"   Grunt {{{
+autocmd BufNewFile,BufRead,BufWrite Gruntfile.coffee set filetype=grunt.coffee
+autocmd BufNewFile,BufRead,BufWrite Gruntfile.js set filetype=grunt.javascript
+"   }}}
+"   Gulp {{{
+autocmd BufNewFile,BufRead,BufWrite Gulpfile.coffee set filetype=gulp.coffee
+autocmd BufNewFile,BufRead,BufWrite Gulpfile.js set filetype=gulp.javascript
+"   }}}
+
+"   Json {{{
+NeoBundle 'leshill/vim-json'
+autocmd BufWrite,BufRead,BufNewFile *.json set filetype=json
+"   }}}
 "   DosIni {{{
 autocmd BufWrite,BufRead,BufNewFile *.ini set filetype=dosini
 autocmd FileType dosini set commentstring=;%s
 "   }}}
-
 " }}}
 " BackUp             {{{
 
