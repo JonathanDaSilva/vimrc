@@ -58,7 +58,7 @@ nnoremap <C-w> <ESC>:q<CR>
 inoremap <C-w> <ESC>:q<CR>
 vnoremap <C-w> <ESC>:q<CR>
 " CTags
-noremap <F10> <ESC>:silent call vimproc#system('ctags -R')<CR>
+noremap <F10> <ESC>:silent call vimproc#system('ctags -R --fields=+l')<CR>
 
 " }}}
 " WildIgnore         {{{
@@ -136,10 +136,15 @@ noremap <C-p> <ESC>:CtrlP<CR>
 "   }}}
 "   YouCompleteMe      : AutoCompletion                                       {{{
 NeoBundle 'Valloric/YouCompleteMe'
-let g:ycm_key_list_select_completion   = ['<c-j>']
-let g:ycm_key_list_previous_completion = ['<c-k>']
-let g:ycm_key_invoke_completion        = '<C-Space>'
-let g:ycm_use_ultisnips_completer      = 1
+let g:ycm_key_list_select_completion          = ['<c-j>']
+let g:ycm_key_list_previous_completion        = ['<c-k>']
+let g:ycm_key_invoke_completion               = '<C-Space>'
+let g:ycm_use_ultisnips_completer             = 1
+let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_confirm_extra_conf                  = 0
+let g:ycm_global_ycm_extra_conf               = '~/.vim/.ycm_extra_conf.py'
+let g:ycm_cache_omnifunc                      = 0
+let g:ycm_enable_diagnostic_signs             = 1
 "   }}}
 "   UltiSnips          : The best snippets manager                            {{{
 NeoBundle 'SirVer/ultisnips'
@@ -235,7 +240,7 @@ set number
 " }}}
 " Filetype Options   {{{
 "   Vim {{{
-autocmd! BufRead,BufNewFile *.vim,vimrc,_vimrc set foldmethod=marker foldmarker={{{,}}} foldlevel=0 foldenable noautoindent
+autocmd BufRead,BufNewFile *.vim,vimrc,_vimrc set foldmethod=marker foldmarker={{{,}}} foldlevel=0 foldenable noautoindent
 autocmd FileType vim set commentstring=\"%s
 "   }}}
 "   PowerShell {{{
