@@ -1,7 +1,4 @@
 " Basic Options      {{{
-
-noremap <F1> <ESC>:h <Right>
-
 set nocompatible
 set runtimepath=$VIM/vim74,~/.vim/
 let mapleader=','
@@ -25,6 +22,7 @@ set ff=dos ffs=dos
 " Keep selection while indent
 vnoremap < <gv
 vnoremap > >gv
+let $profile = "D:/Documents/WindowsPowerShell/Microsoft.PowerShell_profile.ps1"
 
 " }}}
 " Shortcut           {{{
@@ -38,6 +36,7 @@ nnoremap <C-S-l> :vertical resize +5<CR>
 nnoremap <C-S-h> :vertical resize -5<CR>
 " Help coding
 inoremap .. ->
+inoremap ... ..
 " Window Spliting
 noremap wc  <C-w>h
 noremap wt  <C-w>j
