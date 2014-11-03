@@ -70,8 +70,6 @@ set wildignore+=**\\vendor\\**,**\\packages\**      " *******************
 
 set wildignore+=*.psd,*.ai,*.pdf                    " Adobe files
 
-set wildignore+=*.html,*.js,*.css                   " Most of the time I use preprocessor so don't care
-
 set wildignore+=.hg,.git,.svn                       " Version control
 set wildignore+=*.aux,*.out,*.toc                   " LaTeX intermediate files
 set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg      " binary images
