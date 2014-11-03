@@ -236,12 +236,13 @@ set number
 " Filetype Options   {{{
 "   Vim {{{
 autocmd! BufRead,BufNewFile *.vim,vimrc,_vimrc set foldmethod=marker foldmarker={{{,}}} foldlevel=0 foldenable noautoindent
-autocmd FileType vim set commentstring=\"\ %s
+autocmd FileType vim set commentstring=\"%s
 "   }}}
 "   PowerShell {{{
 NeoBundle 'PProvost/vim-ps1'
 autocmd BufWrite,BufRead,BufNewFile *.ps1 set filetype=ps1
 autocmd BufWrite,BufRead,BufNewFile *.psm1 set filetype=ps1
+autocmd FileType ps1 set commentstring=#%s
 "   }}}
 
 "   Text {{{
@@ -256,6 +257,8 @@ NeoBundle 'peterhoeg/vim-qml'
 autocmd BufWrite,BufRead,BufNewFile *.hpp set filetype=hpp.cpp
 autocmd BufWrite,BufRead,BufNewFile *.qml set filetype=qml
 autocmd BufWrite,BufRead,BufNewFile *.qrc set filetype=qrc.xml
+autocmd FileType cpp set commentstring=//%s
+autocmd FileType qml set commentstring=//%s
 "   }}}
 
 "   HTML {{{
@@ -270,34 +273,38 @@ autocmd FileType jinja set commentstring={#\ %s\ #}
 "   Jade {{{
 NeoBundle 'digitaltoad/vim-jade'
 au BufNewFile,BufRead,BufWrite *.jade set filetype=jade
-autocmd FileType jade set commentstring=//-\ %s
+autocmd FileType jade set commentstring=//-%s
 "   }}}
 
 "   PHP {{{
-autocmd FileType php set commentstring=//\ %s
+autocmd FileType php set commentstring=//%s
 autocmd FileType php set tabstop=4 shiftwidth=4
 "   }}}
 "   Ruby {{{
-autocmd FileType ruby set commentstring=#\ %s
 autocmd BufWrite,BufRead,BufNewFile Vagrantfile set filetype=vagrant.ruby
+autocmd FileType ruby set commentstring=#%s
+"   }}}
+"   Python {{{
+autocmd FileType python set commentstring=#%s
 "   }}}
 
 "   Sass {{{
 NeoBundle 'tpope/vim-haml'
 autocmd BufWrite,BufRead,BufNewFile *.sass set filetype=sass
-autocmd FileType sass set commentstring=//\ %s
+autocmd FileType sass set commentstring=//%s
 "   }}}
 
 "   JavaScript {{{
 autocmd BufWrite,BufRead,BufNewFile *.es6 set filetype=javascript
+autocmd FileType javascript set commentstring=//%s
 "   }}}
 "   AtScript {{{
 autocmd BufWrite,BufRead,BufNewFile *.ats set filetype=atscript.javascript
 "   }}}
 "   CoffeeScript {{{
 NeoBundle 'kchmck/vim-coffee-script'
-autocmd FileType coffee set commentstring=#\ %s
 autocmd BufNewFile,BufRead,BufWrite *.coffee set filetype=coffee
+autocmd FileType coffee set commentstring=#%s
 "   }}}
 
 "   Grunt {{{
