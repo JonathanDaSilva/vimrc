@@ -121,10 +121,10 @@ nnoremap <Leader>bi :Unite neobundle/install<CR>
 nnoremap <Leader>bu :Unite neobundle/update<CR>
 nnoremap <Leader>bc :NeoBundleClean<CR>
 nnoremap <Leader>bs :Unite neobundle/search -start-insert<CR>
-" }}}
+"   }}}
 "   Vimproc            : A dll for Shougo plugins                             {{{
 NeoBundle 'Shougo/vimproc'
-" }}}
+"   }}}
 "   CtrlP              : Fuzzy Finder                                         {{{
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'mattn/ctrlp-git'
@@ -134,21 +134,21 @@ let g:ctrlp_show_hidden = 1
 let g:ctrlp_use_caching = 0
 noremap <C-i> <ESC>:CtrlPGitFiles<CR>
 noremap <C-u> <ESC>:CtrlPTag<CR>
-" }}}
+"   }}}
 "   YouCompleteMe      : AutoCompletion                                       {{{
 NeoBundle 'Valloric/YouCompleteMe'
 let g:ycm_key_list_select_completion   = ['<c-j>']
 let g:ycm_key_list_previous_completion = ['<c-k>']
 let g:ycm_key_invoke_completion        = '<C-Space>'
 let g:ycm_use_ultisnips_completer      = 1
-" }}}
+"   }}}
 "   UltiSnips          : The best snippets manager                            {{{
 NeoBundle 'SirVer/ultisnips'
 let g:UltiSnipsEditSplit           = "vertical"
 let g:UltiSnipsSnippetsDir         = expand("~/.vim/ultisnips/")
 set runtimepath+=~/.vim/ultisnips/ " Need to point to the parent pythonx directory script
 nnoremap <Leader>es <ESC>:UltiSnipsEdit<CR>
-" }}}
+"   }}}
 "   Unite              : An incredible interface                              {{{
 NeoBundle 'unite.vim'
 let g:unite_source_history_yank_enable = 1
@@ -157,59 +157,58 @@ let g:unite_winheight = 10
 let g:unite_split_rule = 'botright'
 nnoremap <leader>uh :<C-u>Unite history/yank -start-insert<CR>
 noremap  <C-y> <Esc>:Unite file -start-insert<CR>
-"}}}
+"   }}}
 "   Tabular            : Automaticly align caracter                           {{{
 NeoBundle 'godlygeek/tabular'
 vnoremap <Leader>= <ESC>:Tabular /=<CR>
 vnoremap <Leader><Leader>= <ESC>:Tabular /=><CR>
 vnoremap <Leader>: <ESC>:Tabular /:<CR>
 vnoremap <Leader><Leader>: <ESC>:Tabular /:\zs<CR>
-" }}}
+"   }}}
 "   Airline            : Display a beautiful statusline                       {{{
 NeoBundle 'bling/vim-airline'
 set laststatus=2
-" }}}
+"   }}}
 "   Emmet              : Expand HTML code                                     {{{
 NeoBundle 'mattn/emmet-vim'
 let g:user_emmet_install_global = 0
 autocmd FileType jinja,html EmmetInstall
 let g:user_emmet_leader_key='<C-l>'
-" }}}
+"   }}}
 "   MultipleCursor     : Provide MultiCursor of ST                            {{{
 NeoBundle 'terryma/vim-multiple-cursors'
-" }}}
+"   }}}
 "   Commantary         : Comment your files                                   {{{
 NeoBundle 'tpope/vim-commentary'
-" }}}
+"   }}}
 "   EasyMotion         : Move quickly into your files                         {{{
 NeoBundle 'Lokaltog/vim-easymotion'
 let g:EasyMotion_leader_key = '<Leader><Leader><Leader>'
 let g:EasyMotion_mapping_f = '<Leader>t'
 let g:EasyMotion_mapping_F = '<Leader>s'
-" }}}
+"   }}}
 "   IndentGuide        : Display indent guides                                {{{
 NeoBundle 'nathanaelkane/vim-indent-guides'
 autocmd VimEnter * IndentGuidesToggle
 let g:indent_guide_start_level=2
 let g:indent_guides_guide_size=1
-" }}}
+"   }}}
 "   DelimitMate        : Automaticly close everything                         {{{
 NeoBundle 'Raimondi/delimitMate'
-" }}}
+"   }}}
 "   MatchTagAlways     : Always found the closing tag                         {{{
 NeoBundle 'Valloric/MatchTagAlways'
-" }}}
+"   }}}
 "   ChooseWin          : Easy switching between tabs and split                {{{
 NeoBundle 't9md/vim-choosewin'
 nnoremap - <ESC>:ChooseWin<CR>
 vnoremap - <ESC>:ChooseWin<CR>
-" }}}
+"   }}}
 "   WhiteSpace         : Showing whitespace and delete it automitcly          {{{
 NeoBundle 'ntpeters/vim-better-whitespace'
 autocmd VimEnter * ToggleStripWhitespaceOnSave
 autocmd VimEnter,VimLeave unite ToggleWhitespace
-" }}}
-
+"   }}}
 " }}}
 " Apparence Options  {{{
 
@@ -218,7 +217,7 @@ NeoBundle 'chriskempson/vim-tomorrow-theme'
 NeoBundle 'nanotech/jellybeans.vim'
 
 if has('vim_starting')
-    colorscheme Tomorrow-Night-Eighties
+  colorscheme Tomorrow-Night-Eighties
 endif
 
 " No interface, just the frame
