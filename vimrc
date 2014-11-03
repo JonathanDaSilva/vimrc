@@ -110,7 +110,6 @@ endfunction " }}}
 
 " }}}
 " Plugins Options    {{{
-
 "   NeoBundle          : The package manager                                  {{{
 set runtimepath+=~/.vim/bundle/neobundle.vim/
 call neobundle#begin(expand('~/.vim/bundle/'))
@@ -129,11 +128,11 @@ NeoBundle 'Shougo/vimproc'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'mattn/ctrlp-git'
 let ctrlp#git#system_function = 'vimproc#system'
-let g:ctrlp_cmd = 'CtrlPGit'
 let g:ctrlp_show_hidden = 1
 let g:ctrlp_use_caching = 0
 noremap <C-i> <ESC>:CtrlPGitFiles<CR>
 noremap <C-u> <ESC>:CtrlPTag<CR>
+noremap <C-p> <ESC>:CtrlP<CR>
 "   }}}
 "   YouCompleteMe      : AutoCompletion                                       {{{
 NeoBundle 'Valloric/YouCompleteMe'
