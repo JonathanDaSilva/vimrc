@@ -113,9 +113,10 @@ endfunction " }}}
 
 "   NeoBundle          : The package manager                                  {{{
 set runtimepath+=~/.vim/bundle/neobundle.vim/
-call neobundle#rc(expand('~/.vim/bundle/'))
+call neobundle#begin(expand('~/.vim/bundle/'))
+call neobundle#end()
 NeoBundleFetch 'Shougo/neobundle.vim'
-" mapping
+let g:neobundle#types#git#clone_depth=1
 nnoremap <Leader>bi :Unite neobundle/install<CR>
 nnoremap <Leader>bu :Unite neobundle/update<CR>
 nnoremap <Leader>bc :NeoBundleClean<CR>
