@@ -1,155 +1,151 @@
-snippet v
-video = last
+snippet memory "" i
+SetMemoryMax(2800)$0
 endsnippet
 
-snippet a
-audio = last
+snippet dgi "" i
+DGSource(dgi="${1:name}.dgi", deinterlace=2, resize_w=1280, resize_h=720, crop_t=0, crop_r=0, crop_b=0, crop_l=0)
 endsnippet
 
-snippet dgi
-DGSource("${1:name}.dgi", deinterlace=2, resize_w=1280, resize_h=720, crop_t=0, crop_r=0, crop_b=0, crop_l=0)
-endsnippet
-
-snippet wav
+snippet wav "" i
 WAVSource()
 endsnippet
 
-snippet dss
+snippet dss "" i
 DirectShowSource("${1:name}")
 endsnippet
 
-snippet avi
+snippet avi "" i
 AviSource("${1:name}")
 endsnippet
 
-snippet image
+snippet image "" i
 ImageSource("%02d.bmp", start=0, end=50, fps=24)
 endsnippet
 
-snippet rbg24
+snippet rbg24 "" i
 ConvertToRGB24()
 endsnippet
 
-snippet rgb32
+snippet rgb32 "" i
 ConvertToRGB32()
 endsnippet
 
-snippet yuy2
+snippet yuy2 "" i
 ConvertToYUY2()
 endsnippet
 
-snippet yv12
+snippet yv12 "" i
 ConvertToYV12()
 endsnippet
 
-snippet mc
+snippet mc "" i
 MergeChroma(${1:name})
 endsnippet
 
-snippet ml
+snippet ml "" i
 MergeLuma(${1:name})
 endsnippet
 
-snippet merge
+snippet merge "" i
 Merge(${1:name})
 endsnippet
 
-snippet border
-AddBorders(0, 0, 0, 0)
+snippet border "" i
+AddBorders(${1:left}, ${2:top}, ${3:right}, ${4:bottom})
 endsnippet
 
-snippet crop
-Crop(0, 0, -0, -0)
+snippet crop "" i
+Crop(${1:left}, ${2:top}, ${3:right}, ${4:bottom})
 endsnippet
 
-snippet size
+snippet size "" i
 Spline36Resize(1280, 720)
 endsnippet
 
-snippet resize
+snippet resize "" i
 Lanczos4Resize(1280, 720)
 endsnippet
 
-snippet psize
+snippet psize "" i
 PointResize(1280, 720)
 endsnippet
 
-snippet tl
+snippet tl "" i
 TurnLeft()
 endsnippet
 
-snippet tr
+snippet tr "" i
 TurnRight()
 endsnippet
 
-snippet turn
+snippet turn "" i
 Turn180()
 endsnippet
 
-snippet fps
-AssumeFPS(24000, 1001, true)
+snippet fps "" i
+AssumeFPS(${1:24000}${2:, 1001, true})
 endsnippet
 
-snippet trim
-Trim(start, end)
+snippet trim "" i
+Trim(${1:start}, ${2:end})
 endsnippet
 
-snippet mux
-AudioDubEx(video, audio)
+snippet mux "" i
+AudioDubEx(${1:video}, ${2:audio})
 endsnippet
 
-snippet delay
-DelayAudio(second)
+snippet delay "" i
+DelayAudio(${2:second}ù)
 endsnippet
 
-snippet ka
+snippet ka "" i
 KillAudio()
 endsnippet
 
-snippet kv
+snippet kv "" i
 KillVideo()
 endsnippet
 
-snippet luma
+snippet luma "" i
 Histogram("luma")
 endsnippet
 
-snippet stackh
-StackHorizontal(clip1, clip2)
+snippet stackh "" i
+StackHorizontal(${1:clip1}, ${2:clip2})
 endsnippet
 
-snippet stackv
-StackVertical(clip1, clip2)
+snippet stackv "" i
+StackVertical(${1:clip1}, ${2:clip2})
 endsnippet
 
-snippet compare
-Compare(clip1, clip2)
+snippet compare "" i
+Compare(${1:clip1}, ${2:clip2})
 endsnippet
 
-snippet sharpen
-UnFilter(HSharp, VSharp)
+snippet sharpen "" i
+UnFilter(${1:HSharp}, ${2:VSharp})
 endsnippet
 
-snippet mftoon
+snippet mftoon "" i
 mftoon(50)
 endsnippet
 
-snippet tfm
+snippet tfm "" i
 TFM()
 endsnippet
 
-snippet decimate
+snippet decimate "" i
 TDecimate()
 endsnippet
 
-snippet aa
+snippet aa "" i
 SangNom()
 endsnippet
 
-snippet depan
-i = ConvertToYV12()
-mdata = DePanEstimate(i)
-DePanInterleave(i, data=mdata)
-FluxSmooth()
-SelectEvery(3, 1)
+snippet depan "" i
+ref    = ${1:source}.ConvertToYV12()
+mdata  = DePanEstimate(ref)
+$1 = $1.DePanInterleave(ref, data=mdata)
+$1 = $1.FluxSmooth()
+$1 = $1.SelectEvery(3, 1)
 endsnippet

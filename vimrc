@@ -67,6 +67,7 @@ set wildignore =*\\tmp\\*,**\\sass-cache\\**        " Temporary directory
 set wildignore+=**\\node_modules\\**,**\\build\\**  " *******************
 set wildignore+=**\\bower_components\\**            " *******************
 set wildignore+=**\\vendor\\**,**\\packages\**      " *******************
+set wildignore+=**\\lib\\**                         " *******************
 
 set wildignore+=*.psd,*.ai,*.pdf                    " Adobe files
 
@@ -253,6 +254,11 @@ NeoBundle 'PProvost/vim-ps1'
 autocmd BufWrite,BufRead,BufNewFile *.ps1 set filetype=ps1
 autocmd BufWrite,BufRead,BufNewFile *.psm1 set filetype=ps1
 autocmd FileType ps1 set commentstring=#%s
+"   }}}
+
+"   Avisynth {{{
+autocmd BufWrite,BufRead,BufNewFile *.avs set filetype=avs
+autocmd FileType avs set commentstring=#%s
 "   }}}
 
 "   Text {{{
