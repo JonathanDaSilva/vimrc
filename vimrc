@@ -22,7 +22,7 @@ set ff=dos ffs=dos
 " Keep selection while indent
 vnoremap < <gv
 vnoremap > >gv
-let $profile = "D:/Documents/WindowsPowerShell/Microsoft.PowerShell_profile.ps1"
+let $profile = $PSProfile
 
 " }}}
 " Shortcut           {{{
@@ -31,9 +31,6 @@ let $profile = "D:/Documents/WindowsPowerShell/Microsoft.PowerShell_profile.ps1"
 nnoremap n nzz
 " Alphabetical sorting selection
 vnoremap <leader><leader>s :sort<cr>
-" Resize
-nnoremap <C-S-l> :vertical resize +5<CR>
-nnoremap <C-S-h> :vertical resize -5<CR>
 " Help coding
 inoremap .. ->
 inoremap ... ..
