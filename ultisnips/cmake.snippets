@@ -1,0 +1,27 @@
+snippet mini
+cmake_minimum_required(VERSION 2.8.11)
+endsnippet
+
+snippet qtstart
+cmake_minimum_required(VERSION 2.8.11)
+
+project($1)
+
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+set(CMAKE_AUTOMOC ON)
+
+file(GLOB_RECURSE sources *.cpp *.hpp *.cc .h)
+file(GLOB_RECURSE resources *.qrc)
+
+qt5_add_resources(resource ${resources})
+
+find_package(Qt5Widgets)
+
+add_executable($1 ${sources} ${resource})
+
+target_link_libraries($1 Qt5::Widgets)
+
+if(ANDROID)
+  create_pro(${sources} ${resource})
+endif(ANDROID)
+endsnippet
