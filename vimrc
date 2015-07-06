@@ -61,10 +61,10 @@ noremap <F10> <ESC>:silent call vimproc#system('ctags -R --fields=+l')<CR>
 " WildIgnore         {{{
 
 set wildignore =*\\tmp\\*,**\\sass-cache\\**        " Temporary directory
-set wildignore+=**\\node_modules\\**,**\\build\\**  " *******************
+set wildignore+=**\\node_modules\\**                " *******************
 set wildignore+=**\\bower_components\\**            " *******************
 set wildignore+=**\\vendor\\**,**\\packages\**      " *******************
-set wildignore+=**\\lib\\**                         " *******************
+set wildignore+=**\\lib\\**,**\\build-*\\**         " *******************
 
 set wildignore+=*.psd,*.ai,*.pdf                    " Adobe files
 
@@ -108,12 +108,12 @@ endfunction " }}}
 
 " }}}
 " Plugins Options    {{{
+
 "   NeoBundle          : The package manager                                  {{{
 set runtimepath+=~/.vim/bundle/neobundle.vim/
 call neobundle#begin(expand('~/.vim/bundle/'))
 call neobundle#end()
 NeoBundleFetch 'Shougo/neobundle.vim'
-let g:neobundle#types#git#clone_depth=1
 nnoremap <Leader>bi :Unite neobundle/install<CR>
 nnoremap <Leader>bu :Unite neobundle/update<CR>
 nnoremap <Leader>bc :NeoBundleClean<CR>
@@ -122,30 +122,62 @@ nnoremap <Leader>bs :Unite neobundle/search -start-insert<CR>
 "   Vimproc            : A dll for Shougo plugins                             {{{
 NeoBundle 'Shougo/vimproc'
 "   }}}
+
+"   Unite              : An incredible interface                              {{{
+NeoBundle 'unite.vim'
+let g:unite_source_history_yank_enable = 1
+let g:unite_enable_short_source_names = 1
+let g:unite_winheight = 15
+let g:unite_split_rule = 'botright'
+nnoremap <leader>uh :<C-u>Unite history/yank -start-insert<CR>
+noremap  <C-y> <Esc>:Unite file -start-insert<CR>
+"   }}}
 "   CtrlP              : Fuzzy Finder                                         {{{
 NeoBundle 'kien/ctrlp.vim'
-NeoBundle 'mattn/ctrlp-git'
-let ctrlp#git#system_function = 'vimproc#system'
 let g:ctrlp_show_hidden = 1
 let g:ctrlp_use_caching = 0
-noremap <C-i> <ESC>:CtrlPGitFiles<CR>
-noremap <C-u> <ESC>:CtrlPTag<CR>
+noremap <C-i> <ESC>:CtrlPLine<CR>
+noremap <C-u> <ESC>:CtrlPBufTag<CR>
+noremap <Leader>at <ESC>:CtrlPBufTagAll<CR>
 noremap <C-p> <ESC>:CtrlP<CR>
 "   }}}
 "   YouCompleteMe      : AutoCompletion                                       {{{
 NeoBundle 'Valloric/YouCompleteMe'
-let g:ycm_key_list_select_completion          = ['<c-j>']
-let g:ycm_key_list_previous_completion        = ['<c-k>']
-let g:ycm_key_invoke_completion               = '<C-Space>'
-let g:ycm_use_ultisnips_completer             = 1
-let g:ycm_collect_identifiers_from_tags_files = 1
-let g:ycm_confirm_extra_conf                  = 0
-let g:ycm_global_ycm_extra_conf               = '~/.vim/.ycm_extra_conf.py'
-let g:ycm_cache_omnifunc                      = 0
-let g:ycm_enable_diagnostic_signs             = 1
+let g:ycm_key_list_select_completion               = ['<c-j>', '<Down>']
+let g:ycm_key_list_previous_completion             = ['<c-k>', '<Up>']
+let g:ycm_key_invoke_completion                    = '<C-Space>'
+let g:ycm_complete_in_comments                     = 1
+let g:ycm_use_ultisnips_completer                  = 1
+let g:ycm_collect_identifiers_from_tags_files      = 1
+let g:ycm_confirm_extra_conf                       = 0
+let g:ycm_global_ycm_extra_conf                    = '~/.vim/.ycm_extra_conf.py'
+let g:ycm_cache_omnifunc                           = 1
+let g:ycm_enable_diagnostic_signs                  = 1
+let g:ycm_min_num_of_chars_for_completion          = 0
+let g:ycm_autoclose_preview_window_after_insertion = 1
+
+noremap <Leader>d <ESC>:YcmDiags<CR>
 "   }}}
+
+"   Fugitive           : Git Manager                                          {{{
+NeoBundle 'tpope/vim-fugitive'
+"   }}}
+"   GitGutter          : Show sign for change in files                        {{{
+NeoBundle 'airblade/vim-gitgutter'
+noremap <Leader>gt <Esc>:GitGutterLineHighlightsToggle<CR>
+noremap <Leader>gs <Esc>:GitGutterStageHunk<CR>
+"   }}}
+"   Unite-giti         : Show sign for change in files                        {{{
+NeoBundle 'kmnk/vim-unite-giti'
+noremap <Leader>gg <Esc>:Unite giti -start-insert<CR>
+"   }}}
+
 "   Syntastic          : Synthax Checker                                      {{{
 NeoBundle 'scrooloose/syntastic'
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 "   }}}
 "   UltiSnips          : The best snippets manager                            {{{
 NeoBundle 'SirVer/ultisnips'
@@ -156,15 +188,6 @@ let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 set runtimepath+=~/.vim/ultisnips/ " Need to point to the parent pythonx directory script
 nnoremap <Leader>es <ESC>:UltiSnipsEdit<CR>
 "   }}}
-"   Unite              : An incredible interface                              {{{
-NeoBundle 'unite.vim'
-let g:unite_source_history_yank_enable = 1
-let g:unite_enable_short_source_names = 1
-let g:unite_winheight = 10
-let g:unite_split_rule = 'botright'
-nnoremap <leader>uh :<C-u>Unite history/yank -start-insert<CR>
-noremap  <C-y> <Esc>:Unite file -start-insert<CR>
-"   }}}
 "   Tabular            : Automaticly align caracter                           {{{
 NeoBundle 'godlygeek/tabular'
 vnoremap <Leader>= <ESC>:Tabular /=<CR>
@@ -172,28 +195,31 @@ vnoremap <Leader><Leader>= <ESC>:Tabular /=><CR>
 vnoremap <Leader>: <ESC>:Tabular /:<CR>
 vnoremap <Leader><Leader>: <ESC>:Tabular /:\zs<CR>
 "   }}}
-"   Airline            : Display a beautiful statusline                       {{{
-NeoBundle 'bling/vim-airline'
-set laststatus=2
-"   }}}
 "   Emmet              : Expand HTML code                                     {{{
 NeoBundle 'mattn/emmet-vim'
 let g:user_emmet_install_global = 0
 autocmd FileType jinja,html EmmetInstall
 let g:user_emmet_leader_key='<C-l>'
 "   }}}
-"   MultipleCursor     : Provide MultiCursor of ST                            {{{
-NeoBundle 'terryma/vim-multiple-cursors'
-"   }}}
 "   Commantary         : Comment your files                                   {{{
 NeoBundle 'tpope/vim-commentary'
+"   }}}
+
+"   MultipleCursor     : Provide MultiCursor of ST                            {{{
+NeoBundle 'terryma/vim-multiple-cursors'
 "   }}}
 "   EasyMotion         : Move quickly into your files                         {{{
 NeoBundle 'Lokaltog/vim-easymotion'
 let g:EasyMotion_leader_key = '<Leader><Leader><Leader>'
-let g:EasyMotion_mapping_f = '<Leader>t'
-let g:EasyMotion_mapping_F = '<Leader>s'
+let g:EasyMotion_mapping_f  = '<Leader>t'
+let g:EasyMotion_mapping_F  = '<Leader>s'
 "   }}}
+"   ChooseWin          : Easy switching between tabs and split                {{{
+NeoBundle 't9md/vim-choosewin'
+noremap - <ESC>:ChooseWin<CR>
+vnoremap - <ESC>:ChooseWin<CR>
+"   }}}
+
 "   IndentGuide        : Display indent guides                                {{{
 NeoBundle 'nathanaelkane/vim-indent-guides'
 autocmd VimEnter * IndentGuidesToggle
@@ -202,20 +228,19 @@ let g:indent_guides_guide_size=1
 "   }}}
 "   DelimitMate        : Automaticly close everything                         {{{
 NeoBundle 'Raimondi/delimitMate'
+let delimitMate_expand_cr    = 1
+let delimitMate_expand_space = 1
 "   }}}
-"   MatchTagAlways     : Always found the closing tag                         {{{
-NeoBundle 'Valloric/MatchTagAlways'
-"   }}}
-"   ChooseWin          : Easy switching between tabs and split                {{{
-NeoBundle 't9md/vim-choosewin'
-nnoremap - <ESC>:ChooseWin<CR>
-vnoremap - <ESC>:ChooseWin<CR>
+"   Airline            : Display a beautiful statusline                       {{{
+NeoBundle 'bling/vim-airline'
+set laststatus=2
 "   }}}
 "   WhiteSpace         : Showing whitespace and delete it automitcly          {{{
 NeoBundle 'ntpeters/vim-better-whitespace'
 autocmd VimEnter * ToggleStripWhitespaceOnSave
 autocmd VimEnter,VimLeave unite ToggleWhitespace
 "   }}}
+
 " }}}
 " Apparence Options  {{{
 
@@ -243,13 +268,18 @@ set number
 " }}}
 " Filetype Options   {{{
 "   Vim {{{
-autocmd BufRead,BufNewFile *.vim,vimrc,_vimrc set foldmethod=marker foldmarker={{{,}}} foldlevel=0 foldenable noautoindent
+autocmd BufRead,BufNewFile *.vim,vimrc,_vimrc set filetype=vim
+autocmd FileType vim set foldmethod=marker
+autocmd FileType vim set foldmarker={{{,}}}
+autocmd FileType vim set foldlevel=0
+autocmd FileType vim set foldenable
+autocmd FileType vim set noautoindent
+autocmd FileType vim set nosmartindent
 autocmd FileType vim set commentstring=\"%s
 "   }}}
 "   PowerShell {{{
 NeoBundle 'PProvost/vim-ps1'
-autocmd BufWrite,BufRead,BufNewFile *.ps1 set filetype=ps1
-autocmd BufWrite,BufRead,BufNewFile *.psm1 set filetype=ps1
+autocmd BufWrite,BufRead,BufNewFile *.ps1,*.psm1 set filetype=ps1
 autocmd FileType ps1 set commentstring=#%s
 "   }}}
 
@@ -258,11 +288,11 @@ autocmd BufWrite,BufRead,BufNewFile *.avs set filetype=avs
 autocmd FileType avs set commentstring=#%s
 "   }}}
 
-"   Text {{{
-autocmd FileType text set filetype=markdown
-"   }}}
-"   MarkDown {{{
+"   MarkDown && Text {{{
 NeoBundle 'tpope/vim-markdown'
+autocmd FileType text set filetype=markdown
+autocmd FileType markdown let b:delimitMate_matchpairs   = "(:)"
+autocmd FileType markdown let delimitMate_nesting_quotes = ['"']
 "   }}}
 
 "   CMake {{{
@@ -276,16 +306,22 @@ autocmd BufWrite,BufRead,BufNewFile *.qml set filetype=qml
 autocmd BufWrite,BufRead,BufNewFile *.qrc set filetype=qrc.xml
 autocmd FileType cpp set commentstring=//%s
 autocmd FileType qml set commentstring=//%s
+autocmd FileType cpp let b:delimitMate_matchpairs   = "(:),{:}"
+autocmd FileType cpp let delimitMate_nesting_quotes = ['"']
 "   }}}
 
 "   HTML {{{
 NeoBundle 'othree/html5.vim'
 autocmd FileType html set commentstring=<!--\ %s\ -->
+autocmd FileType html let b:delimitMate_matchpairs = "(:),[:],{:},<:>"
+autocmd FileType html let delimitMate_nesting_quotes = ['"', "'"]
 "   }}}
 "   Twig Template {{{
 NeoBundle 'lepture/vim-jinja'
 autocmd BufWrite,BufRead,BufNewFile *.twig set filetype=jinja
 autocmd FileType jinja set commentstring={#\ %s\ #}
+autocmd FileType jinja let b:delimitMate_matchpairs = "(:),[:],{:},<:>"
+autocmd FileType jinja let delimitMate_nesting_quotes = ['"', "'"]
 "   }}}
 "   Jade {{{
 NeoBundle 'digitaltoad/vim-jade'
@@ -314,16 +350,20 @@ autocmd FileType sass set commentstring=//%s
 "   }}}
 
 "   JavaScript {{{
-autocmd BufWrite,BufRead,BufNewFile *.es6 set filetype=javascript
+NeoBundle 'othree/yajs.vim'
 autocmd FileType javascript set commentstring=//%s
-"   }}}
-"   AtScript {{{
-autocmd BufWrite,BufRead,BufNewFile *.ats set filetype=atscript.javascript
 "   }}}
 "   CoffeeScript {{{
 NeoBundle 'kchmck/vim-coffee-script'
 autocmd BufNewFile,BufRead,BufWrite *.coffee set filetype=coffee
 autocmd FileType coffee set commentstring=#%s
+"   }}}
+"   TypeScript {{{
+NeoBundle 'leafgarland/typescript-vim'
+autocmd BufNewFile,BufRead,BufWrite *.ts set filetype=typescript
+autocmd FileType typescript set tabstop=4 shiftwidth=4
+autocmd FileType typescript set commentstring=//%s
+let g:syntastic_typescript_tsc_args = '--target ES5 --emitDecoratorMetadata --module commonjs'
 "   }}}
 
 "   Grunt {{{
@@ -338,6 +378,9 @@ autocmd BufNewFile,BufRead,BufWrite Gulpfile.js set filetype=gulp.javascript
 "   Json {{{
 NeoBundle 'leshill/vim-json'
 autocmd BufWrite,BufRead,BufNewFile *.json set filetype=json
+"   }}}
+"   Yaml {{{
+NeoBundle 'chase/vim-ansible-yaml'
 "   }}}
 "   DosIni {{{
 autocmd BufWrite,BufRead,BufNewFile *.ini set filetype=dosini

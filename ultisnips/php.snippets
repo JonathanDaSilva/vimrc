@@ -4,7 +4,7 @@ from laravel import *
 endglobal
 
 # ----------------------- PHP -----------------------
-snippet php "php tags"
+snippet php "open php tag"
 <?php
 ${1}
 endsnippet
@@ -15,13 +15,13 @@ class ${1:Name} extends ${2:Name}
 }
 endsnippet
 
-snippet met "method déclaration"
+snippet met "method declaration"
 $1`!p snip.rv=complete(t[1], ['public', 'private', 'protected', 'static'])` function ${2:name}($3)
 {$0
 }
 endsnippet
 
-snippet attr "attribute déclaration"
+snippet attr "attribute declaration"
 $1`!p snip.rv=complete(t[1], ['public', 'private', 'protected', 'static'])` $${2:name};
 endsnippet
 
@@ -97,11 +97,11 @@ class `!p snip.rv = getFileName(fn)` extends Migration {
 }
 endsnippet
 
-snippet field
+snippet field "Field for migration in Laravel 4"
 $table->$1`!p snip.rv = complete(t[1], ['increments','bigIncrements','string','integer','bigInteger','float','boolean','timestamp','softDeletes','text'])`($2);
 endsnippet
 
-snippet facade
+snippet facade "Facade Laravel 4"
 <?php
 namespace $1;
 
@@ -119,7 +119,7 @@ class $2Facade extends Facade
 }
 endsnippet
 
-snippet provider
+snippet provider "Service Provider Laravel 4"
 <?php
 namespace $1;
 
