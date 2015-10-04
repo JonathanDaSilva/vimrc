@@ -1,31 +1,31 @@
-snippet nodejs
+snippet node
 {
   "name": "${1}",
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "nodemon server-min.js"
   },
   "dependencies": {
-    "nodemon": "latest",
-    "express.io": "latest",
-    "mongodb": "latest"
-    "mysql": "latest"
-    "jade": "latest"
   }
 }
 endsnippet
 
 snippet nw
 {
-  "name": "test",
+  "name": "${1}",
   "window": {
     "width": 800,
     "height": 600,
     "toolbar": false,
-    "frame": false
+    "frame": true
   },
-  "start": "nodemon server-min.js"
+  "scripts": {
+    "start": "nw"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+    "nw": "^0.12.3"
   },
   "main": "index.html"
 }

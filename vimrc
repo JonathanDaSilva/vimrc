@@ -64,7 +64,8 @@ set wildignore =*\\tmp\\*,**\\sass-cache\\**        " Temporary directory
 set wildignore+=**\\node_modules\\**                " *******************
 set wildignore+=**\\bower_components\\**            " *******************
 set wildignore+=**\\vendor\\**,**\\packages\**      " *******************
-set wildignore+=**\\lib\\**,**\\build-*\\**         " *******************
+set wildignore+=**\\lib\\**                         " *******************
+set wildignore+=**\\build\\**,**\\build-*\\**       " *******************
 
 set wildignore+=*.psd,*.ai,*.pdf                    " Adobe files
 
@@ -175,9 +176,18 @@ noremap <Leader>gg <Esc>:Unite giti -start-insert<CR>
 "   Syntastic          : Synthax Checker                                      {{{
 NeoBundle 'scrooloose/syntastic'
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
+let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
+function! ToggleErrors()
+    let old_last_winnr = winnr('$')
+    lclose
+    if old_last_winnr == winnr('$')
+        Errors
+    endif
+endfunction
+nnoremap <silent> <Leader>r :<C-u>call ToggleErrors()<CR>
 "   }}}
 "   UltiSnips          : The best snippets manager                            {{{
 NeoBundle 'SirVer/ultisnips'
@@ -198,8 +208,8 @@ vnoremap <Leader><Leader>: <ESC>:Tabular /:\zs<CR>
 "   Emmet              : Expand HTML code                                     {{{
 NeoBundle 'mattn/emmet-vim'
 let g:user_emmet_install_global = 0
-autocmd FileType jinja,html EmmetInstall
-let g:user_emmet_leader_key='<C-l>'
+autocmd FileType * EmmetInstall
+let g:user_emmet_expandabbr_key = '<C-l>'
 "   }}}
 "   Commantary         : Comment your files                                   {{{
 NeoBundle 'tpope/vim-commentary'
@@ -209,10 +219,12 @@ NeoBundle 'tpope/vim-commentary'
 NeoBundle 'terryma/vim-multiple-cursors'
 "   }}}
 "   EasyMotion         : Move quickly into your files                         {{{
-NeoBundle 'Lokaltog/vim-easymotion'
-let g:EasyMotion_leader_key = '<Leader><Leader><Leader>'
-let g:EasyMotion_mapping_f  = '<Leader>t'
-let g:EasyMotion_mapping_F  = '<Leader>s'
+NeoBundle 'easymotion/vim-easymotion'
+let g:EasyMotion_skipfoldedline = 0
+let g:EasyMotion_smartcase = 1
+map <Leader>t <Plug>(easymotion-bd-f)
+map <Leader>s <Plug>(easymotion-bd-jk)
+map <Leader>n <Plug>(easymotion-sn)
 "   }}}
 "   ChooseWin          : Easy switching between tabs and split                {{{
 NeoBundle 't9md/vim-choosewin'
@@ -262,13 +274,13 @@ syntax on
 set synmaxcol=800
 
 " Display number and relative number
-set relativenumber
 set number
+set norelativenumber
 
 " }}}
 " Filetype Options   {{{
 "   Vim {{{
-autocmd BufRead,BufNewFile *.vim,vimrc,_vimrc set filetype=vim
+autocmd BufRead,BufNewFile,BufEnter *.vim,vimrc,_vimrc set filetype=vim
 autocmd FileType vim set foldmethod=marker
 autocmd FileType vim set foldmarker={{{,}}}
 autocmd FileType vim set foldlevel=0
@@ -279,13 +291,15 @@ autocmd FileType vim set commentstring=\"%s
 "   }}}
 "   PowerShell {{{
 NeoBundle 'PProvost/vim-ps1'
-autocmd BufWrite,BufRead,BufNewFile *.ps1,*.psm1 set filetype=ps1
+autocmd BufRead,BufNewFile,BufEnter,BufWrite *.ps1,*.psm1 set filetype=ps1
 autocmd FileType ps1 set commentstring=#%s
+autocmd FileType ps1 set tabstop=2 shiftwidth=2
 "   }}}
 
 "   Avisynth {{{
-autocmd BufWrite,BufRead,BufNewFile *.avs set filetype=avs
+autocmd BufRead,BufNewFile,BufEnter,BufWrite *.avs set filetype=avs
 autocmd FileType avs set commentstring=#%s
+autocmd FileType avs set tabstop=2 shiftwidth=2
 "   }}}
 
 "   MarkDown && Text {{{
@@ -298,16 +312,19 @@ autocmd FileType markdown let delimitMate_nesting_quotes = ['"']
 "   CMake {{{
 NeoBundle 'jansenm/vim-cmake'
 autocmd FileType cmake set commentstring=#%s
+autocmd FileType cmake set tabstop=2 shiftwidth=2
 "   }}}
 "   C++ {{{
 NeoBundle 'peterhoeg/vim-qml'
-autocmd BufWrite,BufRead,BufNewFile *.hpp set filetype=hpp.cpp
-autocmd BufWrite,BufRead,BufNewFile *.qml set filetype=qml
-autocmd BufWrite,BufRead,BufNewFile *.qrc set filetype=qrc.xml
+autocmd BufRead,BufNewFile,BufEnter,BufWrite *.hpp set filetype=hpp.cpp
+autocmd BufRead,BufNewFile,BufEnter,BufWrite *.qml set filetype=qml
+autocmd BufRead,BufNewFile,BufEnter,BufWrite *.qrc set filetype=qrc.xml
 autocmd FileType cpp set commentstring=//%s
 autocmd FileType qml set commentstring=//%s
 autocmd FileType cpp let b:delimitMate_matchpairs   = "(:),{:}"
 autocmd FileType cpp let delimitMate_nesting_quotes = ['"']
+autocmd FileType cpp set tabstop=2 shiftwidth=2
+autocmd FileType qml set tabstop=2 shiftwidth=2
 "   }}}
 
 "   HTML {{{
@@ -315,18 +332,21 @@ NeoBundle 'othree/html5.vim'
 autocmd FileType html set commentstring=<!--\ %s\ -->
 autocmd FileType html let b:delimitMate_matchpairs = "(:),[:],{:},<:>"
 autocmd FileType html let delimitMate_nesting_quotes = ['"', "'"]
+autocmd FileType html set tabstop=2 shiftwidth=2
 "   }}}
 "   Twig Template {{{
 NeoBundle 'lepture/vim-jinja'
-autocmd BufWrite,BufRead,BufNewFile *.twig set filetype=jinja
+autocmd BufRead,BufNewFile,BufEnter,BufWrite *.twig set filetype=jinja
 autocmd FileType jinja set commentstring={#\ %s\ #}
 autocmd FileType jinja let b:delimitMate_matchpairs = "(:),[:],{:},<:>"
 autocmd FileType jinja let delimitMate_nesting_quotes = ['"', "'"]
+autocmd FileType jinja set tabstop=2 shiftwidth=2
 "   }}}
 "   Jade {{{
 NeoBundle 'digitaltoad/vim-jade'
-au BufNewFile,BufRead,BufWrite *.jade set filetype=jade
+autocmd BufRead,BufNewFile,BufEnter,BufWrite *.jade set filetype=jade
 autocmd FileType jade set commentstring=//-%s
+autocmd FileType jade set tabstop=2 shiftwidth=2
 "   }}}
 
 "   PHP {{{
@@ -334,7 +354,7 @@ autocmd FileType php set commentstring=//%s
 autocmd FileType php set tabstop=4 shiftwidth=4
 "   }}}
 "   Ruby {{{
-autocmd BufWrite,BufRead,BufNewFile Vagrantfile set filetype=vagrant.ruby
+autocmd BufRead,BufNewFile,BufEnter,BufWrite Vagrantfile set filetype=vagrant.ruby
 autocmd FileType ruby set commentstring=#%s
 autocmd FileType ruby set tabstop=4 shiftwidth=4
 "   }}}
@@ -345,45 +365,53 @@ autocmd FileType python set tabstop=4 shiftwidth=4
 
 "   Sass {{{
 NeoBundle 'tpope/vim-haml'
-autocmd BufWrite,BufRead,BufNewFile *.sass set filetype=sass
+autocmd BufRead,BufNewFile,BufEnter,BufWrite *.sass set filetype=sass
 autocmd FileType sass set commentstring=//%s
+autocmd FileType sass set tabstop=2 shiftwidth=2
 "   }}}
 
 "   JavaScript {{{
 NeoBundle 'othree/yajs.vim'
 autocmd FileType javascript set commentstring=//%s
+autocmd FileType javascript set tabstop=2 shiftwidth=2
 "   }}}
 "   CoffeeScript {{{
 NeoBundle 'kchmck/vim-coffee-script'
-autocmd BufNewFile,BufRead,BufWrite *.coffee set filetype=coffee
+autocmd BufRead,BufNewFile,BufEnter,BufWrite *.coffee set filetype=coffee
 autocmd FileType coffee set commentstring=#%s
+autocmd FileType coffee set tabstop=2 shiftwidth=2
 "   }}}
 "   TypeScript {{{
 NeoBundle 'leafgarland/typescript-vim'
-autocmd BufNewFile,BufRead,BufWrite *.ts set filetype=typescript
+autocmd BufRead,BufNewFile,BufEnter,BufWrite *.ts set filetype=typescript
 autocmd FileType typescript set tabstop=4 shiftwidth=4
 autocmd FileType typescript set commentstring=//%s
-let g:syntastic_typescript_tsc_args = '--target ES5 --emitDecoratorMetadata --module commonjs'
+
+let g:syntastic_typescript_tsc_args       = '--project '.getcwd()
+let g:syntastic_typescript_tsc_fname      = ""
+let g:syntastic_typescript_tsc_args_after = ""
 "   }}}
 
 "   Grunt {{{
-autocmd BufNewFile,BufRead,BufWrite Gruntfile.coffee set filetype=grunt.coffee
-autocmd BufNewFile,BufRead,BufWrite Gruntfile.js set filetype=grunt.javascript
+autocmd BufRead,BufNewFile,BufEnter,BufWrite Gruntfile.coffee set filetype=grunt.coffee
+autocmd BufRead,BufNewFile,BufEnter,BufWrite Gruntfile.js set filetype=grunt.javascript
 "   }}}
 "   Gulp {{{
-autocmd BufNewFile,BufRead,BufWrite Gulpfile.coffee set filetype=gulp.coffee
-autocmd BufNewFile,BufRead,BufWrite Gulpfile.js set filetype=gulp.javascript
+autocmd BufRead,BufNewFile,BufEnter,BufWrite Gulpfile.coffee set filetype=gulp.coffee
+autocmd BufRead,BufNewFile,BufEnter,BufWrite Gulpfile.js set filetype=gulp.javascript
 "   }}}
 
 "   Json {{{
 NeoBundle 'leshill/vim-json'
-autocmd BufWrite,BufRead,BufNewFile *.json set filetype=json
+autocmd BufRead,BufNewFile,BufEnter,BufWrite *.json set filetype=json
+autocmd FileType json set tabstop=2 shiftwidth=2
 "   }}}
 "   Yaml {{{
 NeoBundle 'chase/vim-ansible-yaml'
+autocmd FileType yaml set tabstop=2 shiftwidth=2
 "   }}}
 "   DosIni {{{
-autocmd BufWrite,BufRead,BufNewFile *.ini set filetype=dosini
+autocmd BufRead,BufNewFile,BufEnter,BufWrite *.ini set filetype=dosini
 autocmd FileType dosini set commentstring=;%s
 "   }}}
 " }}}
