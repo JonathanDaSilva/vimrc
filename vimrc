@@ -8,6 +8,7 @@ set wrap textwidth=0 linebreak
 set clipboard=unnamed
 set ignorecase smartcase
 set nohlsearch
+set scrolloff=5
 " Edit Vimrc and reload vimrc
 nnoremap <Leader>ev <ESC>:e $myvimrc<CR>
 nnoremap <Leader>o  <ESC>:so $myvimrc<CR>
@@ -22,6 +23,8 @@ set ff=dos ffs=dos
 " Keep selection while indent
 vnoremap < <gv
 vnoremap > >gv
+map <F7> mzgg=G`z
+
 let $profile = $PSProfile
 
 " }}}
@@ -63,6 +66,8 @@ noremap <F10> <ESC>:silent call vimproc#system('ctags -R --fields=+l')<CR>
 set wildignore =*\\tmp\\*,**\\sass-cache\\**        " Temporary directory
 set wildignore+=**\\node_modules\\**                " *******************
 set wildignore+=**\\bower_components\\**            " *******************
+set wildignore+=**\\typing\\**                      " *******************
+set wildignore+=**\\jspm_packages\\**               " *******************
 set wildignore+=**\\vendor\\**,**\\packages\**      " *******************
 set wildignore+=**\\lib\\**                         " *******************
 set wildignore+=**\\build\\**,**\\build-*\\**       " *******************
@@ -235,6 +240,7 @@ vnoremap - <ESC>:ChooseWin<CR>
 "   IndentGuide        : Display indent guides                                {{{
 NeoBundle 'nathanaelkane/vim-indent-guides'
 autocmd VimEnter * IndentGuidesToggle
+noremap <Leader><Leader>u <ESC>:IndentGuidesToggle<CR>
 let g:indent_guide_start_level=2
 let g:indent_guides_guide_size=1
 "   }}}
@@ -251,6 +257,8 @@ set laststatus=2
 NeoBundle 'ntpeters/vim-better-whitespace'
 autocmd VimEnter * ToggleStripWhitespaceOnSave
 autocmd VimEnter,VimLeave unite ToggleWhitespace
+
+noremap <Leader>ww <Esc>:StripWhitespace<CR>
 "   }}}
 
 " }}}
@@ -386,6 +394,11 @@ NeoBundle 'leafgarland/typescript-vim'
 autocmd BufRead,BufNewFile *.ts set filetype=typescript
 autocmd FileType typescript set tabstop=4 shiftwidth=4
 autocmd FileType typescript set commentstring=//%s
+autocmd FileType typescript set foldmethod=syntax
+autocmd FileType typescript set foldlevel=1
+autocmd FileType typescript set foldnestmax=2
+autocmd BufRead,BufNewFile *.spec.ts set foldnestmax=3
+autocmd FileType typescript set foldenable
 
 let g:syntastic_typescript_tsc_args       = '--project '.getcwd()
 let g:syntastic_typescript_tsc_fname      = ""
