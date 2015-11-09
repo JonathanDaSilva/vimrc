@@ -164,6 +164,10 @@ let g:ycm_autoclose_preview_window_after_insertion = 1
 
 noremap <Leader>d <ESC>:YcmDiags<CR>
 "   }}}
+"   Zeal               : Documentation                                        {{{
+NeoBundle 'KabbAmine/zeavim.vim'
+let g:zv_zeal_executable = "C:\\Program Files (x86)\\Zeal\\zeal.exe"
+"   }}}
 
 "   Fugitive           : Git Manager                                          {{{
 NeoBundle 'tpope/vim-fugitive'
@@ -178,6 +182,12 @@ NeoBundle 'kmnk/vim-unite-giti'
 noremap <Leader>gg <Esc>:Unite giti -start-insert<CR>
 "   }}}
 
+"   EditorConfig       : Synchronise configuration between multiple editor    {{{
+NeoBundle 'editorconfig/editorconfig-vim'
+autocmd VimEnter,BufNewFile,BufWrite * EditorConfigReload
+let g:EditorConfig_exec_path = "C:\Program Files (x86)\editorconfig\bin\editorconfig.exe"
+let g:EditorConfig_verbose = 1
+"   }}}
 "   Syntastic          : Synthax Checker                                      {{{
 NeoBundle 'scrooloose/syntastic'
 let g:syntastic_always_populate_loc_list = 1
