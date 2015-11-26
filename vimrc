@@ -184,7 +184,7 @@ noremap <Leader>gg <Esc>:Unite giti -start-insert<CR>
 
 "   EditorConfig       : Synchronise configuration between multiple editor    {{{
 NeoBundle 'editorconfig/editorconfig-vim'
-autocmd VimEnter,BufNewFile,BufWrite * EditorConfigReload
+autocmd VimEnter,BufEnter,BufLeave,BufNewFile,BufWrite,Filetype * EditorConfigReload
 let g:EditorConfig_exec_path = "C:\Program Files (x86)\editorconfig\bin\editorconfig.exe"
 let g:EditorConfig_verbose = 1
 "   }}}
@@ -249,8 +249,7 @@ vnoremap - <ESC>:ChooseWin<CR>
 
 "   IndentGuide        : Display indent guides                                {{{
 NeoBundle 'nathanaelkane/vim-indent-guides'
-autocmd VimEnter * IndentGuidesToggle
-noremap <Leader><Leader>u <ESC>:IndentGuidesToggle<CR>
+autocmd VimEnter,BufEnter,BufLeave,BufNewFile,BufWrite,Filetype * IndentGuidesEnable
 let g:indent_guide_start_level=2
 let g:indent_guides_guide_size=1
 "   }}}
@@ -386,6 +385,8 @@ NeoBundle 'tpope/vim-haml'
 autocmd BufRead,BufNewFile *.sass set filetype=sass
 autocmd FileType sass set commentstring=//%s
 autocmd FileType sass set tabstop=2 shiftwidth=2
+autocmd FileType sass set foldmethod=marker
+autocmd FileType sass set foldmarker={{{,}}}
 "   }}}
 
 "   JavaScript {{{
@@ -432,6 +433,7 @@ autocmd FileType json set tabstop=2 shiftwidth=2
 "   Yaml {{{
 NeoBundle 'chase/vim-ansible-yaml'
 autocmd FileType yaml set tabstop=2 shiftwidth=2
+autocmd FileType yaml set commentstring=#\ %s
 "   }}}
 "   DosIni {{{
 autocmd BufRead,BufNewFile *.ini set filetype=dosini
