@@ -1,6 +1,5 @@
 " Basic Options      {{{
 set nocompatible
-set runtimepath=$VIM/vim74,~/.vim/
 let mapleader=','
 set backspace=2
 set autoread autowrite
@@ -18,12 +17,13 @@ set autoindent smartindent
 set tabstop=2 shiftwidth=2 expandtab
 set shiftround
 " fileencoding
-set encoding=utf-8 fileencoding=utf-8
+if has('vim_starting')
+  set encoding=utf-8 fileencoding=utf-8
+endif
 set ff=dos ffs=dos
 " Keep selection while indent
 vnoremap < <gv
 vnoremap > >gv
-map <F7> mzgg=G`z
 
 let $profile = $PSProfile
 
@@ -115,22 +115,30 @@ endfunction " }}}
 " }}}
 " Plugins Options    {{{
 
-"   NeoBundle          : The package manager                                  {{{
-set runtimepath+=~/.vim/bundle/neobundle.vim/
-call neobundle#begin(expand('~/.vim/bundle/'))
-call neobundle#end()
-NeoBundleFetch 'Shougo/neobundle.vim'
-nnoremap <Leader>bi :Unite neobundle/install<CR>
-nnoremap <Leader>bu :Unite neobundle/update<CR>
-nnoremap <Leader>bc :NeoBundleClean<CR>
-nnoremap <Leader>bs :Unite neobundle/search -start-insert<CR>
+"   Plug          : The package manager                                  {{{
+set runtimepath+=~/.vim/bundle/
+call plug#begin(expand('~/.vim/bundle'))
+nnoremap <Leader>bi :PlugInstall<CR>
+" nnoremap <Leader>bu :Unite neobundle/update<CR>
+" nnoremap <Leader>bc :NeoBundleClean<CR>
+" nnoremap <Leader>bs :Unite neobundle/search -start-insert<CR>
 "   }}}
+" "   NeoBundle          : The package manager                                  {{{
+" set runtimepath+=~/.vim/bundle/neobundle.vim/
+" call neobundle#begin(expand('~/.vim/bundle/'))
+" call neobundle#end()
+" NeoBundleFetch 'Shougo/neobundle.vim'
+" nnoremap <Leader>bi :Unite neobundle/install<CR>
+" nnoremap <Leader>bu :Unite neobundle/update<CR>
+" nnoremap <Leader>bc :NeoBundleClean<CR>
+" nnoremap <Leader>bs :Unite neobundle/search -start-insert<CR>
+" "   }}}
 "   Vimproc            : A dll for Shougo plugins                             {{{
-NeoBundle 'Shougo/vimproc'
+Plug 'Shougo/vimproc'
 "   }}}
 
 "   Unite              : An incredible interface                              {{{
-NeoBundle 'unite.vim'
+Plug 'unite.vim'
 let g:unite_source_history_yank_enable = 1
 let g:unite_enable_short_source_names = 1
 let g:unite_winheight = 15
@@ -139,7 +147,7 @@ nnoremap <leader>uh :<C-u>Unite history/yank -start-insert<CR>
 noremap  <C-y> <Esc>:Unite file -start-insert<CR>
 "   }}}
 "   CtrlP              : Fuzzy Finder                                         {{{
-NeoBundle 'kien/ctrlp.vim'
+Plug 'kien/ctrlp.vim'
 let g:ctrlp_show_hidden = 1
 let g:ctrlp_use_caching = 0
 noremap <C-i> <ESC>:CtrlPLine<CR>
@@ -148,7 +156,7 @@ noremap <Leader>at <ESC>:CtrlPBufTagAll<CR>
 noremap <C-p> <ESC>:CtrlP<CR>
 "   }}}
 "   YouCompleteMe      : AutoCompletion                                       {{{
-NeoBundle 'Valloric/YouCompleteMe'
+Plug 'Valloric/YouCompleteMe'
 let g:ycm_key_list_select_completion               = ['<c-j>', '<Down>']
 let g:ycm_key_list_previous_completion             = ['<c-k>', '<Up>']
 let g:ycm_key_invoke_completion                    = '<C-Space>'
@@ -165,31 +173,33 @@ let g:ycm_autoclose_preview_window_after_insertion = 1
 noremap <Leader>d <ESC>:YcmDiags<CR>
 "   }}}
 "   Zeal               : Documentation                                        {{{
-NeoBundle 'KabbAmine/zeavim.vim'
+Plug 'KabbAmine/zeavim.vim'
 let g:zv_zeal_executable = "C:\\Program Files (x86)\\Zeal\\zeal.exe"
 "   }}}
 
 "   Fugitive           : Git Manager                                          {{{
-NeoBundle 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 "   }}}
 "   GitGutter          : Show sign for change in files                        {{{
-NeoBundle 'airblade/vim-gitgutter'
+Plug 'airblade/vim-gitgutter'
 noremap <Leader>gt <Esc>:GitGutterLineHighlightsToggle<CR>
 noremap <Leader>gs <Esc>:GitGutterStageHunk<CR>
 "   }}}
 "   Unite-giti         : Show sign for change in files                        {{{
-NeoBundle 'kmnk/vim-unite-giti'
+Plug 'kmnk/vim-unite-giti'
 noremap <Leader>gg <Esc>:Unite giti -start-insert<CR>
 "   }}}
 
 "   EditorConfig       : Synchronise configuration between multiple editor    {{{
-NeoBundle 'editorconfig/editorconfig-vim'
-autocmd VimEnter,BufEnter,BufLeave,BufNewFile,BufWrite,Filetype * EditorConfigReload
-let g:EditorConfig_exec_path = "C:\Program Files (x86)\editorconfig\bin\editorconfig.exe"
-let g:EditorConfig_verbose = 1
+Plug 'editorconfig/editorconfig-vim'
+if exists('editorconfig#AddNewHook')
+  autocmd VimEnter,BufEnter,BufLeave,BufNewFile,BufWrite,Filetype * EditorConfigReload
+  let g:EditorConfig_exec_path = "C:\Program Files (x86)\editorconfig\bin\editorconfig.exe"
+  let g:EditorConfig_verbose = 1
+endif
 "   }}}
 "   Syntastic          : Synthax Checker                                      {{{
-NeoBundle 'scrooloose/syntastic'
+Plug 'scrooloose/syntastic'
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
@@ -205,7 +215,7 @@ endfunction
 nnoremap <silent> <Leader>r :<C-u>call ToggleErrors()<CR>
 "   }}}
 "   UltiSnips          : The best snippets manager                            {{{
-NeoBundle 'SirVer/ultisnips'
+Plug 'SirVer/ultisnips'
 let g:UltiSnipsEditSplit           = "vertical"
 let g:UltiSnipsSnippetsDir         = expand("~/.vim/ultisnips/")
 let g:UltiSnipsJumpForwardTrigger  = "<tab>"
@@ -214,27 +224,29 @@ set runtimepath+=~/.vim/ultisnips/ " Need to point to the parent pythonx directo
 nnoremap <Leader>es <ESC>:UltiSnipsEdit<CR>
 "   }}}
 "   Tabular            : Automaticly align caracter                           {{{
-NeoBundle 'godlygeek/tabular'
+Plug 'godlygeek/tabular'
 vnoremap <Leader>= <ESC>:Tabular /=<CR>
 vnoremap <Leader><Leader>= <ESC>:Tabular /=><CR>
 vnoremap <Leader>: <ESC>:Tabular /:<CR>
 vnoremap <Leader><Leader>: <ESC>:Tabular /:\zs<CR>
 "   }}}
 "   Emmet              : Expand HTML code                                     {{{
-NeoBundle 'mattn/emmet-vim'
-let g:user_emmet_install_global = 0
-autocmd FileType * EmmetInstall
-let g:user_emmet_expandabbr_key = '<C-l>'
+Plug 'mattn/emmet-vim'
+if exists('emmet#splitFilterArg')
+  let g:user_emmet_install_global = 0
+  autocmd FileType * EmmetInstall
+  let g:user_emmet_expandabbr_key = '<C-l>'
+endif
 "   }}}
 "   Commantary         : Comment your files                                   {{{
-NeoBundle 'tpope/vim-commentary'
+Plug 'tpope/vim-commentary'
 "   }}}
 
 "   MultipleCursor     : Provide MultiCursor of ST                            {{{
-NeoBundle 'terryma/vim-multiple-cursors'
+Plug 'terryma/vim-multiple-cursors'
 "   }}}
 "   EasyMotion         : Move quickly into your files                         {{{
-NeoBundle 'easymotion/vim-easymotion'
+Plug 'easymotion/vim-easymotion'
 let g:EasyMotion_skipfoldedline = 0
 let g:EasyMotion_smartcase = 1
 map <Leader>t <Plug>(easymotion-bd-f)
@@ -242,43 +254,50 @@ map <Leader>s <Plug>(easymotion-bd-jk)
 map <Leader>n <Plug>(easymotion-sn)
 "   }}}
 "   ChooseWin          : Easy switching between tabs and split                {{{
-NeoBundle 't9md/vim-choosewin'
+Plug 't9md/vim-choosewin'
 noremap - <ESC>:ChooseWin<CR>
 vnoremap - <ESC>:ChooseWin<CR>
 "   }}}
 
 "   IndentGuide        : Display indent guides                                {{{
-NeoBundle 'nathanaelkane/vim-indent-guides'
-autocmd VimEnter,BufEnter,BufLeave,BufNewFile,BufWrite,Filetype * IndentGuidesEnable
-let g:indent_guide_start_level=2
-let g:indent_guides_guide_size=1
+Plug 'nathanaelkane/vim-indent-guides'
+if exists('indent_guides#toggle')
+  autocmd VimEnter,BufEnter,BufLeave,BufNewFile,BufWrite,Filetype * IndentGuidesEnable
+  let g:indent_guide_start_level=2
+  let g:indent_guides_guide_size=1
+endif
 "   }}}
 "   DelimitMate        : Automaticly close everything                         {{{
-NeoBundle 'Raimondi/delimitMate'
+Plug 'Raimondi/delimitMate'
 let delimitMate_expand_cr    = 1
 let delimitMate_expand_space = 1
 "   }}}
 "   Airline            : Display a beautiful statusline                       {{{
-NeoBundle 'bling/vim-airline'
+Plug 'bling/vim-airline'
 set laststatus=2
 "   }}}
 "   WhiteSpace         : Showing whitespace and delete it automitcly          {{{
-NeoBundle 'ntpeters/vim-better-whitespace'
-autocmd VimEnter * ToggleStripWhitespaceOnSave
-autocmd VimEnter,VimLeave unite ToggleWhitespace
+Plug 'ntpeters/vim-better-whitespace'
+if exists('g:loaded_better_whitespace_plugin')
+  autocmd VimEnter * ToggleStripWhitespaceOnSave
+  autocmd VimEnter,VimLeave unite ToggleWhitespace
 
-noremap <Leader>ww <Esc>:StripWhitespace<CR>
+  noremap <Leader>ww <Esc>:StripWhitespace<CR>
+endif
 "   }}}
 
 " }}}
 " Apparence Options  {{{
 
-NeoBundle 'flazz/vim-colorschemes'
-NeoBundle 'chriskempson/vim-tomorrow-theme'
-NeoBundle 'nanotech/jellybeans.vim'
+Plug 'flazz/vim-colorschemes'
+Plug 'chriskempson/vim-tomorrow-theme'
+Plug 'nanotech/jellybeans.vim'
 
 if has('vim_starting')
-  colorscheme Tomorrow-Night-Eighties
+  try
+    colorscheme Tomorrow-Night-Eighties
+    catch
+  endtry
 endif
 
 " No interface, just the frame
@@ -307,7 +326,7 @@ autocmd FileType vim set nosmartindent
 autocmd FileType vim set commentstring=\"%s
 "   }}}
 "   PowerShell {{{
-NeoBundle 'PProvost/vim-ps1'
+Plug 'PProvost/vim-ps1'
 autocmd BufRead,BufNewFile *.ps1,*.psm1 set filetype=ps1
 autocmd FileType ps1 set commentstring=#%s
 autocmd FileType ps1 set tabstop=2 shiftwidth=2
@@ -320,19 +339,19 @@ autocmd FileType avs set tabstop=2 shiftwidth=2
 "   }}}
 
 "   MarkDown && Text {{{
-NeoBundle 'tpope/vim-markdown'
+Plug 'tpope/vim-markdown'
 autocmd FileType text set filetype=markdown
 autocmd FileType markdown let b:delimitMate_matchpairs   = "(:)"
 autocmd FileType markdown let delimitMate_nesting_quotes = ['"']
 "   }}}
 
 "   CMake {{{
-NeoBundle 'jansenm/vim-cmake'
+Plug 'jansenm/vim-cmake'
 autocmd FileType cmake set commentstring=#%s
 autocmd FileType cmake set tabstop=2 shiftwidth=2
 "   }}}
 "   C++ {{{
-NeoBundle 'peterhoeg/vim-qml'
+Plug 'peterhoeg/vim-qml'
 autocmd BufRead,BufNewFile *.hpp set filetype=hpp.cpp
 autocmd BufRead,BufNewFile *.qml set filetype=qml
 autocmd BufRead,BufNewFile *.qrc set filetype=qrc.xml
@@ -345,14 +364,14 @@ autocmd FileType qml set tabstop=2 shiftwidth=2
 "   }}}
 
 "   HTML {{{
-NeoBundle 'othree/html5.vim'
+Plug 'othree/html5.vim'
 autocmd FileType html set commentstring=<!--\ %s\ -->
 autocmd FileType html let b:delimitMate_matchpairs = "(:),[:],{:},<:>"
 autocmd FileType html let delimitMate_nesting_quotes = ['"', "'"]
 autocmd FileType html set tabstop=2 shiftwidth=2
 "   }}}
 "   Twig Template {{{
-NeoBundle 'lepture/vim-jinja'
+Plug 'lepture/vim-jinja'
 autocmd BufRead,BufNewFile,BufWrite *.twig set filetype=jinja
 autocmd FileType jinja set commentstring={#\ %s\ #}
 autocmd FileType jinja let b:delimitMate_matchpairs = "(:),[:],{:},<:>"
@@ -360,7 +379,7 @@ autocmd FileType jinja let delimitMate_nesting_quotes = ['"', "'"]
 autocmd FileType jinja set tabstop=2 shiftwidth=2
 "   }}}
 "   Jade {{{
-NeoBundle 'digitaltoad/vim-jade'
+Plug 'digitaltoad/vim-jade'
 autocmd BufRead,BufNewFile *.jade set filetype=jade
 autocmd FileType jade set commentstring=//-%s
 autocmd FileType jade set tabstop=2 shiftwidth=2
@@ -381,7 +400,7 @@ autocmd FileType python set tabstop=4 shiftwidth=4
 "   }}}
 
 "   Sass {{{
-NeoBundle 'tpope/vim-haml'
+Plug 'tpope/vim-haml'
 autocmd BufRead,BufNewFile *.sass set filetype=sass
 autocmd FileType sass set commentstring=//%s
 autocmd FileType sass set tabstop=2 shiftwidth=2
@@ -390,18 +409,18 @@ autocmd FileType sass set foldmarker={{{,}}}
 "   }}}
 
 "   JavaScript {{{
-NeoBundle 'othree/yajs.vim'
+Plug 'othree/yajs.vim'
 autocmd FileType javascript set commentstring=//%s
 autocmd FileType javascript set tabstop=2 shiftwidth=2
 "   }}}
 "   CoffeeScript {{{
-NeoBundle 'kchmck/vim-coffee-script'
+Plug 'kchmck/vim-coffee-script'
 autocmd BufRead,BufNewFile *.coffee set filetype=coffee
 autocmd FileType coffee set commentstring=#%s
 autocmd FileType coffee set tabstop=2 shiftwidth=2
 "   }}}
 "   TypeScript {{{
-NeoBundle 'leafgarland/typescript-vim'
+Plug 'leafgarland/typescript-vim'
 autocmd BufRead,BufNewFile *.ts set filetype=typescript
 autocmd FileType typescript set tabstop=4 shiftwidth=4
 autocmd FileType typescript set commentstring=//%s
@@ -426,12 +445,12 @@ autocmd BufRead,BufNewFile Gulpfile.js set filetype=gulp.javascript
 "   }}}
 
 "   Json {{{
-NeoBundle 'leshill/vim-json'
+Plug 'leshill/vim-json'
 autocmd BufRead,BufNewFile *.json set filetype=json
 autocmd FileType json set tabstop=2 shiftwidth=2
 "   }}}
 "   Yaml {{{
-NeoBundle 'chase/vim-ansible-yaml'
+Plug 'chase/vim-ansible-yaml'
 autocmd FileType yaml set tabstop=2 shiftwidth=2
 autocmd FileType yaml set commentstring=#\ %s
 "   }}}
@@ -495,3 +514,4 @@ noremap I I
 vnoremap i I
 
 " }}}
+call plug#end()
