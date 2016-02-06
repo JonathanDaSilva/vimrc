@@ -1,6 +1,5 @@
 " Basic Options      {{{
 set nocompatible
-set runtimepath=$VIM/vim74,~/.vim/
 let mapleader=','
 set backspace=2
 set autoread autowrite
@@ -8,7 +7,7 @@ set wrap textwidth=0 linebreak
 set clipboard=unnamed
 set ignorecase smartcase
 set nohlsearch
-set scrolloff=5
+set scrolloff=7
 " Edit Vimrc and reload vimrc
 nnoremap <Leader>ev <ESC>:e $myvimrc<CR>
 nnoremap <Leader>o  <ESC>:so $myvimrc<CR>
@@ -23,7 +22,6 @@ set ff=dos ffs=dos
 " Keep selection while indent
 vnoremap < <gv
 vnoremap > >gv
-map <F7> mzgg=G`z
 
 let $profile = $PSProfile
 
@@ -118,7 +116,6 @@ endfunction " }}}
 "   NeoBundle          : The package manager                                  {{{
 set runtimepath+=~/.vim/bundle/neobundle.vim/
 call neobundle#begin(expand('~/.vim/bundle/'))
-call neobundle#end()
 NeoBundleFetch 'Shougo/neobundle.vim'
 nnoremap <Leader>bi :Unite neobundle/install<CR>
 nnoremap <Leader>bu :Unite neobundle/update<CR>
@@ -186,7 +183,7 @@ noremap <Leader>gg <Esc>:Unite giti -start-insert<CR>
 NeoBundle 'editorconfig/editorconfig-vim'
 autocmd VimEnter,BufEnter,BufLeave,BufNewFile,BufWrite,Filetype * EditorConfigReload
 let g:EditorConfig_exec_path = "C:\Program Files (x86)\editorconfig\bin\editorconfig.exe"
-let g:EditorConfig_verbose = 1
+let g:EditorConfig_verbose = 0
 "   }}}
 "   Syntastic          : Synthax Checker                                      {{{
 NeoBundle 'scrooloose/syntastic'
@@ -495,3 +492,4 @@ noremap I I
 vnoremap i I
 
 " }}}
+call neobundle#end()
