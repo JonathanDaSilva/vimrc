@@ -1,6 +1,3 @@
-[submodule "bundle/unite.vim"]
-	path = bundle/unite.vim
-	url = https://github.com/Shougo/unite.vim
-[submodule "bundle/vimproc"]
-	path = bundle/vimproc
-	url = https://github.com/Shougo/vimproc.vim.git
+[submodule "bundle/autoload"]
+	path = bundle/autoload
+	url = https://github.com/junegunn/vim-plug.git

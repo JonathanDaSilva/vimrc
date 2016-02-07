@@ -293,13 +293,6 @@ Plug 'flazz/vim-colorschemes'
 Plug 'chriskempson/vim-tomorrow-theme'
 Plug 'nanotech/jellybeans.vim'
 
-if has('vim_starting')
-  try
-  colorscheme Tomorrow-Night-Eighties
-    catch
-  endtry
-endif
-
 " No interface, just the frame
 set go=""
 " Hide my mouse I don't use it
@@ -515,3 +508,10 @@ vnoremap i I
 
 " }}}
 call plug#end()
+
+if has('vim_starting')
+  try
+  colorscheme Tomorrow-Night-Eighties
+    catch
+  endtry
+endif
