@@ -119,20 +119,9 @@ endfunction " }}}
 set runtimepath+=~/.vim/bundle/
 call plug#begin(expand('~/.vim/bundle'))
 nnoremap <Leader>bi :PlugInstall<CR>
-" nnoremap <Leader>bu :Unite neobundle/update<CR>
-" nnoremap <Leader>bc :NeoBundleClean<CR>
-" nnoremap <Leader>bs :Unite neobundle/search -start-insert<CR>
+nnoremap <Leader>bu :PlugUpdate<CR>
+nnoremap <Leader>bc :PlugClean<CR>
 "   }}}
-" "   NeoBundle          : The package manager                                  {{{
-" set runtimepath+=~/.vim/bundle/neobundle.vim/
-" call neobundle#begin(expand('~/.vim/bundle/'))
-" call neobundle#end()
-" NeoBundleFetch 'Shougo/neobundle.vim'
-" nnoremap <Leader>bi :Unite neobundle/install<CR>
-" nnoremap <Leader>bu :Unite neobundle/update<CR>
-" nnoremap <Leader>bc :NeoBundleClean<CR>
-" nnoremap <Leader>bs :Unite neobundle/search -start-insert<CR>
-" "   }}}
 "   Vimproc            : A dll for Shougo plugins                             {{{
 Plug 'Shougo/vimproc'
 "   }}}
