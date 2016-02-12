@@ -166,9 +166,6 @@ Plug 'KabbAmine/zeavim.vim'
 let g:zv_zeal_executable = "C:\\Program Files (x86)\\Zeal\\zeal.exe"
 "   }}}
 
-"   Fugitive           : Git Manager                                          {{{
-Plug 'tpope/vim-fugitive'
-"   }}}
 "   GitGutter          : Show sign for change in files                        {{{
 Plug 'airblade/vim-gitgutter'
 noremap <Leader>gt <Esc>:GitGutterLineHighlightsToggle<CR>
@@ -181,11 +178,9 @@ noremap <Leader>gg <Esc>:Unite giti -start-insert<CR>
 
 "   EditorConfig       : Synchronise configuration between multiple editor    {{{
 Plug 'editorconfig/editorconfig-vim'
-if exists('editorconfig#AddNewHook')
-  autocmd VimEnter,BufEnter,BufLeave,BufNewFile,BufWrite,Filetype * EditorConfigReload
-  let g:EditorConfig_exec_path = "C:\Program Files (x86)\editorconfig\bin\editorconfig.exe"
-  let g:EditorConfig_verbose = 1
-endif
+autocmd VimEnter,BufEnter,BufLeave,BufNewFile,BufWrite,Filetype * EditorConfigReload
+let g:EditorConfig_exec_path = "C:\Program Files (x86)\editorconfig\bin\editorconfig.exe"
+let g:EditorConfig_verbose = 0
 "   }}}
 "   Syntastic          : Synthax Checker                                      {{{
 Plug 'scrooloose/syntastic'
@@ -221,11 +216,9 @@ vnoremap <Leader><Leader>: <ESC>:Tabular /:\zs<CR>
 "   }}}
 "   Emmet              : Expand HTML code                                     {{{
 Plug 'mattn/emmet-vim'
-if exists('emmet#splitFilterArg')
-  let g:user_emmet_install_global = 0
-  autocmd FileType * EmmetInstall
-  let g:user_emmet_expandabbr_key = '<C-l>'
-endif
+let g:user_emmet_install_global = 0
+autocmd FileType * EmmetInstall
+let g:user_emmet_expandabbr_key = '<C-l>'
 "   }}}
 "   Commantary         : Comment your files                                   {{{
 Plug 'tpope/vim-commentary'
@@ -250,11 +243,9 @@ vnoremap - <ESC>:ChooseWin<CR>
 
 "   IndentGuide        : Display indent guides                                {{{
 Plug 'nathanaelkane/vim-indent-guides'
-if exists('indent_guides#toggle')
-  autocmd VimEnter,BufEnter,BufLeave,BufNewFile,BufWrite,Filetype * IndentGuidesEnable
-  let g:indent_guide_start_level=2
-  let g:indent_guides_guide_size=1
-endif
+autocmd VimEnter,BufEnter,BufLeave,BufNewFile,BufWrite,Filetype * IndentGuidesEnable
+let g:indent_guide_start_level=2
+let g:indent_guides_guide_size=1
 "   }}}
 "   DelimitMate        : Automaticly close everything                         {{{
 Plug 'Raimondi/delimitMate'
@@ -267,12 +258,10 @@ set laststatus=2
 "   }}}
 "   WhiteSpace         : Showing whitespace and delete it automitcly          {{{
 Plug 'ntpeters/vim-better-whitespace'
-if exists('g:loaded_better_whitespace_plugin')
-  autocmd VimEnter * ToggleStripWhitespaceOnSave
-  autocmd VimEnter,VimLeave unite ToggleWhitespace
+autocmd VimEnter * ToggleStripWhitespaceOnSave
+autocmd VimEnter,VimLeave unite ToggleWhitespace
 
-  noremap <Leader>ww <Esc>:StripWhitespace<CR>
-endif
+noremap <Leader>ww <Esc>:StripWhitespace<CR>
 "   }}}
 
 " }}}
