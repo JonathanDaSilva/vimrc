@@ -66,7 +66,7 @@ noremap <F10> <ESC>:silent call vimproc#system('ctags -R --fields=+l')<CR>
 set wildignore =*\\tmp\\*,**\\sass-cache\\**        " Temporary directory
 set wildignore+=**\\node_modules\\**                " *******************
 set wildignore+=**\\bower_components\\**            " *******************
-set wildignore+=**\\typing\\**                      " *******************
+set wildignore+=**\\typings\\**                     " *******************
 set wildignore+=**\\jspm_packages\\**               " *******************
 set wildignore+=**\\vendor\\**,**\\packages\**      " *******************
 set wildignore+=**\\lib\\**                         " *******************
@@ -298,7 +298,8 @@ autocmd FileType vim set commentstring=\"%s
 "   }}}
 "   PowerShell {{{
 Plug 'PProvost/vim-ps1'
-autocmd BufRead,BufNewFile *.ps1,*.psm1 set filetype=ps1
+autocmd BufRead,BufNewFile *.ps1m set filetype=ps1
+autocmd BufRead,BufNewFile *.ps1  set filetype=ps1
 autocmd FileType ps1 set commentstring=#%s
 autocmd FileType ps1 set tabstop=2 shiftwidth=2
 "   }}}
@@ -417,7 +418,8 @@ autocmd BufRead,BufNewFile Gulpfile.js set filetype=gulp.javascript
 
 "   Json {{{
 Plug 'leshill/vim-json'
-autocmd BufRead,BufNewFile *.json set filetype=json
+autocmd BufRead,BufNewFile .babelrc set filetype=json
+autocmd BufRead,BufNewFile *.json   set filetype=json
 autocmd FileType json set tabstop=2 shiftwidth=2
 "   }}}
 "   Yaml {{{
