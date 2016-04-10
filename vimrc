@@ -1,5 +1,6 @@
 " Basic Options      {{{
 set nocompatible
+set hidden
 let mapleader=','
 set backspace=2
 set autoread autowrite
@@ -115,8 +116,8 @@ endfunction " }}}
 " }}}
 " Plugins Options    {{{
 
-"   Plug          : The package manager                                  {{{
-set runtimepath+=~/.vim/bundle/
+"   Plug               : The package manager                                  {{{
+set runtimepath+=~/.vim/
 call plug#begin(expand('~/.vim/bundle'))
 nnoremap <Leader>bi :PlugInstall<CR>
 nnoremap <Leader>bu :PlugUpdate<CR>
@@ -136,9 +137,12 @@ nnoremap <leader>uh :<C-u>Unite history/yank -start-insert<CR>
 noremap  <C-y> <Esc>:Unite file -start-insert<CR>
 "   }}}
 "   CtrlP              : Fuzzy Finder                                         {{{
-Plug 'kien/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'FelikZ/ctrlp-py-matcher'
+let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 let g:ctrlp_show_hidden = 1
 let g:ctrlp_use_caching = 0
+
 noremap <C-i> <ESC>:CtrlPLine<CR>
 noremap <C-u> <ESC>:CtrlPBufTag<CR>
 noremap <Leader>at <ESC>:CtrlPBufTagAll<CR>
@@ -160,15 +164,30 @@ let g:ycm_min_num_of_chars_for_completion          = 0
 let g:ycm_autoclose_preview_window_after_insertion = 1
 
 noremap <Leader>d <ESC>:YcmDiags<CR>
+noremap <leader>ri <ESC>:YcmCompleter GetDoc<CR>
+noremap <leader>ra <ESC>:YcmCompleter GoToDefinition<CR>
 "   }}}
 "   Zeal               : Documentation                                        {{{
 Plug 'KabbAmine/zeavim.vim'
 let g:zv_zeal_executable = "C:\\Program Files (x86)\\Zeal\\zeal.exe"
+let g:zv_file_types = {
+            \ 'typescript'            : 'javascript,typescript',
+            \ '^(G|g)runtfile\.'      : 'grunt',
+            \ '^(G|g)ulpfile\.'       : 'gulp',
+            \ '^(md|mdown|mkd|mkdn)$' : 'markdown',
+            \ 'css'                   : 'css,foundation,bootstrap_4',
+        \ }
+"   }}}
+"   Nerdtree           : File Explorer                                        {{{
+Plug 'scrooloose/nerdtree'
+noremap <C-n> <ESC>:NERDTreeToggle<CR>
 "   }}}
 
 "   GitGutter          : Show sign for change in files                        {{{
 Plug 'airblade/vim-gitgutter'
 noremap <Leader>gt <Esc>:GitGutterLineHighlightsToggle<CR>
+noremap <Leader>gr <Esc>:GitGutterReverHunk<CR>
+noremap <Leader>gp <Esc>:GitGutterPreviewHunk<CR>
 noremap <Leader>gs <Esc>:GitGutterStageHunk<CR>
 "   }}}
 "   Unite-giti         : Show sign for change in files                        {{{
