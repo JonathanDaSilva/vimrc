@@ -47,7 +47,9 @@ noremap wd  <Esc>:close<CR>
 noremap w<Space> <Esc>:vsplit<CR>
 noremap w<CR> <Esc>:split<CR>
 " New Tab shortcut
-noremap <leader>nt :tabnew<CR>
+noremap <leader>nt <Esc>:tabnew<CR>
+noremap <C-t> <Esc>:tabnew<CR>
+noremap <C-Tab> <Esc>:tabnext<CR>
 " Switching between highlight search or not
 map <Leader><Leader><Space> :set hlsearch!<CR>
 " Save
@@ -75,7 +77,7 @@ set wildignore+=**\\build\\**,**\\build-*\\**       " *******************
 
 set wildignore+=*.psd,*.ai,*.pdf                    " Adobe files
 
-set wildignore+=.hg,.git,.svn                       " Version control
+set wildignore+=.hg,.git,.svn,*.orig                " Version control
 set wildignore+=*.aux,*.out,*.toc                   " LaTeX intermediate files
 set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg      " binary images
 set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest    " compiled object files
@@ -124,9 +126,8 @@ nnoremap <Leader>bu :PlugUpdate<CR>
 nnoremap <Leader>bc :PlugClean<CR>
 "   }}}
 "   Vimproc            : A dll for Shougo plugins                             {{{
-Plug 'Shougo/vimproc'
+Plug 'Shougo/vimproc.vim', { 'do': 'mingw32-make' }
 "   }}}
-
 "   Unite              : An incredible interface                              {{{
 Plug 'unite.vim'
 let g:unite_source_history_yank_enable = 1
@@ -149,23 +150,22 @@ noremap <Leader>at <ESC>:CtrlPBufTagAll<CR>
 noremap <C-p> <ESC>:CtrlP<CR>
 "   }}}
 "   YouCompleteMe      : AutoCompletion                                       {{{
-Plug 'Valloric/YouCompleteMe'
+Plug 'Valloric/YouCompleteMe', { 'do': 'python install.py --omnisharp-completer --tern-completer' }
 let g:ycm_key_list_select_completion               = ['<c-j>', '<Down>']
 let g:ycm_key_list_previous_completion             = ['<c-k>', '<Up>']
 let g:ycm_key_invoke_completion                    = '<C-Space>'
 let g:ycm_complete_in_comments                     = 1
 let g:ycm_use_ultisnips_completer                  = 1
-let g:ycm_collect_identifiers_from_tags_files      = 1
+let g:ycm_collect_identifiers_from_tags_files      = 0
 let g:ycm_confirm_extra_conf                       = 0
 let g:ycm_global_ycm_extra_conf                    = '~/.vim/.ycm_extra_conf.py'
 let g:ycm_cache_omnifunc                           = 1
 let g:ycm_enable_diagnostic_signs                  = 1
 let g:ycm_min_num_of_chars_for_completion          = 0
-let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_autoclose_preview_window_after_insertion = 0
 
-noremap <Leader>d <ESC>:YcmDiags<CR>
-noremap <leader>ri <ESC>:YcmCompleter GetDoc<CR>
-noremap <leader>ra <ESC>:YcmCompleter GoToDefinition<CR>
+noremap <leader>d <ESC>:YcmCompleter GetDoc<CR>
+noremap <leader>l <ESC>:YcmCompleter GoToDefinition<CR>
 "   }}}
 "   Zeal               : Documentation                                        {{{
 Plug 'KabbAmine/zeavim.vim'
@@ -175,12 +175,7 @@ let g:zv_file_types = {
             \ '^(G|g)runtfile\.'      : 'grunt',
             \ '^(G|g)ulpfile\.'       : 'gulp',
             \ '^(md|mdown|mkd|mkdn)$' : 'markdown',
-            \ 'css'                   : 'css,foundation,bootstrap_4',
         \ }
-"   }}}
-"   Nerdtree           : File Explorer                                        {{{
-Plug 'scrooloose/nerdtree'
-noremap <C-n> <ESC>:NERDTreeToggle<CR>
 "   }}}
 
 "   GitGutter          : Show sign for change in files                        {{{
@@ -190,10 +185,6 @@ noremap <Leader>gr <Esc>:GitGutterReverHunk<CR>
 noremap <Leader>gp <Esc>:GitGutterPreviewHunk<CR>
 noremap <Leader>gs <Esc>:GitGutterStageHunk<CR>
 "   }}}
-"   Unite-giti         : Show sign for change in files                        {{{
-Plug 'kmnk/vim-unite-giti'
-noremap <Leader>gg <Esc>:Unite giti -start-insert<CR>
-"   }}}
 
 "   EditorConfig       : Synchronise configuration between multiple editor    {{{
 Plug 'editorconfig/editorconfig-vim'
@@ -202,10 +193,11 @@ let g:EditorConfig_exec_path = "C:\Program Files (x86)\editorconfig\bin\editorco
 let g:EditorConfig_verbose = 0
 "   }}}
 "   Syntastic          : Synthax Checker                                      {{{
-Plug 'scrooloose/syntastic'
+Plug 'scrooloose/syntastic', { 'commit': '663fea9dc9371d574f1a4a6ba15cc9e60ebbe510' }
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
+let g:syntastic_aggregate_errors = 1
 let g:syntastic_check_on_wq = 0
 
 function! ToggleErrors()
@@ -241,6 +233,7 @@ let g:user_emmet_expandabbr_key = '<C-l>'
 "   }}}
 "   Commantary         : Comment your files                                   {{{
 Plug 'tpope/vim-commentary'
+silent! unmap cgc
 "   }}}
 
 "   MultipleCursor     : Provide MultiCursor of ST                            {{{
@@ -369,12 +362,6 @@ autocmd FileType jinja let b:delimitMate_matchpairs = "(:),[:],{:},<:>"
 autocmd FileType jinja let delimitMate_nesting_quotes = ['"', "'"]
 autocmd FileType jinja set tabstop=2 shiftwidth=2
 "   }}}
-"   Jade {{{
-Plug 'digitaltoad/vim-jade'
-autocmd BufRead,BufNewFile *.jade set filetype=jade
-autocmd FileType jade set commentstring=//-%s
-autocmd FileType jade set tabstop=2 shiftwidth=2
-"   }}}
 
 "   PHP {{{
 autocmd FileType php set commentstring=//%s
@@ -390,25 +377,17 @@ autocmd FileType python set commentstring=#%s
 autocmd FileType python set tabstop=4 shiftwidth=4
 "   }}}
 
-"   Sass {{{
-Plug 'tpope/vim-haml'
-autocmd BufRead,BufNewFile *.sass set filetype=sass
-autocmd FileType sass set commentstring=//%s
-autocmd FileType sass set tabstop=2 shiftwidth=2
-autocmd FileType sass set foldmethod=marker
-autocmd FileType sass set foldmarker={{{,}}}
+"   Scss {{{
+autocmd BufRead,BufNewFile *.scss set filetype=scss
+autocmd FileType scss set commentstring=//%s
+autocmd FileType scss set tabstop=2 shiftwidth=2
+autocmd FileType scss set foldmethod=marker
+autocmd FileType scss set foldmarker={{{,}}}
 "   }}}
 
 "   JavaScript {{{
-Plug 'othree/yajs.vim'
 autocmd FileType javascript set commentstring=//%s
 autocmd FileType javascript set tabstop=2 shiftwidth=2
-"   }}}
-"   CoffeeScript {{{
-Plug 'kchmck/vim-coffee-script'
-autocmd BufRead,BufNewFile *.coffee set filetype=coffee
-autocmd FileType coffee set commentstring=#%s
-autocmd FileType coffee set tabstop=2 shiftwidth=2
 "   }}}
 "   TypeScript {{{
 Plug 'leafgarland/typescript-vim'
@@ -421,17 +400,18 @@ autocmd FileType typescript set foldnestmax=2
 autocmd BufRead,BufNewFile *.spec.ts set foldnestmax=3
 autocmd FileType typescript set foldenable
 
+" let g:syntastic_typescript_checkers       = ['tsc', 'tslint']
+" let g:syntastic_typescript_checkers       = ['tsc']
+let g:syntastic_typescript_checkers       = []
 let g:syntastic_typescript_tsc_args       = '--project '.getcwd()
 let g:syntastic_typescript_tsc_fname      = ""
 let g:syntastic_typescript_tsc_args_after = ""
 "   }}}
 
 "   Grunt {{{
-autocmd BufRead,BufNewFile Gruntfile.coffee set filetype=grunt.coffee
 autocmd BufRead,BufNewFile Gruntfile.js set filetype=grunt.javascript
 "   }}}
 "   Gulp {{{
-autocmd BufRead,BufNewFile Gulpfile.coffee set filetype=gulp.coffee
 autocmd BufRead,BufNewFile Gulpfile.js set filetype=gulp.javascript
 "   }}}
 
@@ -440,9 +420,11 @@ Plug 'leshill/vim-json'
 autocmd BufRead,BufNewFile .babelrc set filetype=json
 autocmd BufRead,BufNewFile *.json   set filetype=json
 autocmd FileType json set tabstop=2 shiftwidth=2
+
+let g:syntastic_json_checkers = ['jsonlint']
 "   }}}
 "   Yaml {{{
-Plug 'chase/vim-ansible-yaml'
+Plug 'pearofducks/ansible-vim'
 autocmd FileType yaml set tabstop=2 shiftwidth=2
 autocmd FileType yaml set commentstring=#\ %s
 "   }}}
@@ -504,13 +486,16 @@ noremap U A
 noremap i i
 noremap I I
 vnoremap i I
+"    Macro
+noremap j q
+
 
 " }}}
 call plug#end()
 
 if has('vim_starting')
   try
-  colorscheme Tomorrow-Night-Eighties
-    catch
+    colorscheme Tomorrow-Night-Eighties
+  catch
   endtry
 endif
