@@ -1,8 +1,37 @@
-snippet ref "Reference path for a dependencie"
-/// <reference path="./$1"/>
-endsnippet
-
 snippet func "expand function" i
 function($1) {$0
+}
+endsnippet
+
+snippet cons "expand function" i
+console.log('-------------------------');
+console.log($1);
+console.log('-------------------------');
+endsnippet
+
+snippet component
+import template from './template.html!text';
+import style from './style.css!text';
+import { OnInit, Component } from '@angular/core';
+import { ActivatedRoute, ROUTER_DIRECTIVES } from '@angular/router';
+
+@Component({
+    template,
+    styles: [style],
+    directives: [
+		ROUTER_DIRECTIVES,
+    ],
+    providers: [
+    ],
+})
+export class RoleDetails implements OnInit {
+
+    constructor(
+        private route: ActivatedRoute
+    ) { }
+
+    public ngOnInit() {
+    }
+
 }
 endsnippet

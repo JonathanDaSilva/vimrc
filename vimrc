@@ -25,6 +25,7 @@ set ff=dos ffs=dos
 " Keep selection while indent
 vnoremap < <gv
 vnoremap > >gv
+inoreabbrev lorem Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla.<cr><cr>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur sodales ligula in libero. Sed dignissim lacinia nunc. Curabitur tortor. Pellentesque nibh. Aenean quam. In scelerisque sem at dolor. Maecenas mattis. Sed convallis tristique sem. Proin ut ligula vel nunc egestas porttitor. Morbi lectus risus, iaculis vel, suscipit quis, luctus non, massa. Fusce ac turpis quis ligula lacinia aliquet. Mauris ipsum. Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in, nibh.<cr><cr>Quisque volutpat condimentum velit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nam nec ante. Sed lacinia, urna non tincidunt mattis, tortor neque adipiscing diam, a cursus ipsum ante quis turpis. Nulla facilisi. Ut fringilla. Suspendisse potenti. Nunc feugiat mi a tellus consequat imperdiet. Vestibulum sapien. Proin quam. Etiam ultrices. Suspendisse in justo eu magna luctus suscipit. Sed lectus.
 
 let $profile = $PSProfile
 
@@ -75,7 +76,7 @@ set wildignore+=**\\build\\**,**\\build-*\\**       " *******************
 
 set wildignore+=*.psd,*.ai,*.pdf                    " Adobe files
 
-set wildignore+=.hg,.git,.svn                       " Version control
+set wildignore+=.hg,.git,.svn,*.orig                " Version control
 set wildignore+=*.aux,*.out,*.toc                   " LaTeX intermediate files
 set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg      " binary images
 set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest    " compiled object files
@@ -124,9 +125,8 @@ nnoremap <Leader>bu :PlugUpdate<CR>
 nnoremap <Leader>bc :PlugClean<CR>
 "   }}}
 "   Vimproc            : A dll for Shougo plugins                             {{{
-Plug 'Shougo/vimproc'
+Plug 'Shougo/vimproc.vim', { 'do': 'mingw32-make' }
 "   }}}
-
 "   Unite              : An incredible interface                              {{{
 Plug 'unite.vim'
 let g:unite_source_history_yank_enable = 1
@@ -149,7 +149,7 @@ noremap <Leader>at <ESC>:CtrlPBufTagAll<CR>
 noremap <C-p> <ESC>:CtrlP<CR>
 "   }}}
 "   YouCompleteMe      : AutoCompletion                                       {{{
-Plug 'Valloric/YouCompleteMe'
+Plug 'Valloric/YouCompleteMe', { 'do': 'python install.py' }
 let g:ycm_key_list_select_completion               = ['<c-j>', '<Down>']
 let g:ycm_key_list_previous_completion             = ['<c-k>', '<Up>']
 let g:ycm_key_invoke_completion                    = '<C-Space>'
@@ -178,10 +178,6 @@ let g:zv_file_types = {
             \ 'css'                   : 'css,foundation,bootstrap_4',
         \ }
 "   }}}
-"   Nerdtree           : File Explorer                                        {{{
-Plug 'scrooloose/nerdtree'
-noremap <C-n> <ESC>:NERDTreeToggle<CR>
-"   }}}
 
 "   GitGutter          : Show sign for change in files                        {{{
 Plug 'airblade/vim-gitgutter'
@@ -202,10 +198,11 @@ let g:EditorConfig_exec_path = "C:\Program Files (x86)\editorconfig\bin\editorco
 let g:EditorConfig_verbose = 0
 "   }}}
 "   Syntastic          : Synthax Checker                                      {{{
-Plug 'scrooloose/syntastic'
+Plug 'scrooloose/syntastic', { 'commit': '663fea9dc9371d574f1a4a6ba15cc9e60ebbe510' }
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
+let g:syntastic_aggregate_errors = 1
 let g:syntastic_check_on_wq = 0
 
 function! ToggleErrors()
@@ -241,6 +238,7 @@ let g:user_emmet_expandabbr_key = '<C-l>'
 "   }}}
 "   Commantary         : Comment your files                                   {{{
 Plug 'tpope/vim-commentary'
+silent! unmap cgc
 "   }}}
 
 "   MultipleCursor     : Provide MultiCursor of ST                            {{{
@@ -398,6 +396,12 @@ autocmd FileType sass set tabstop=2 shiftwidth=2
 autocmd FileType sass set foldmethod=marker
 autocmd FileType sass set foldmarker={{{,}}}
 "   }}}
+"   Scss {{{
+autocmd FileType scss set commentstring=//%s
+autocmd FileType scss set tabstop=2 shiftwidth=2
+autocmd FileType scss set foldmethod=marker
+autocmd FileType scss set foldmarker={{{,}}}
+"   }}}
 
 "   JavaScript {{{
 Plug 'othree/yajs.vim'
@@ -421,6 +425,7 @@ autocmd FileType typescript set foldnestmax=2
 autocmd BufRead,BufNewFile *.spec.ts set foldnestmax=3
 autocmd FileType typescript set foldenable
 
+let g:syntastic_typescript_checkers       = ['tsc', 'tslint']
 let g:syntastic_typescript_tsc_args       = '--project '.getcwd()
 let g:syntastic_typescript_tsc_fname      = ""
 let g:syntastic_typescript_tsc_args_after = ""
@@ -440,9 +445,11 @@ Plug 'leshill/vim-json'
 autocmd BufRead,BufNewFile .babelrc set filetype=json
 autocmd BufRead,BufNewFile *.json   set filetype=json
 autocmd FileType json set tabstop=2 shiftwidth=2
+
+let g:syntastic_json_checkers=['jsonlint']
 "   }}}
 "   Yaml {{{
-Plug 'chase/vim-ansible-yaml'
+Plug 'pearofducks/ansible-vim'
 autocmd FileType yaml set tabstop=2 shiftwidth=2
 autocmd FileType yaml set commentstring=#\ %s
 "   }}}
@@ -504,13 +511,16 @@ noremap U A
 noremap i i
 noremap I I
 vnoremap i I
+"    Macro
+noremap j q
+
 
 " }}}
 call plug#end()
 
 if has('vim_starting')
   try
-  colorscheme Tomorrow-Night-Eighties
-    catch
+    colorscheme Tomorrow-Night-Eighties
+  catch
   endtry
 endif
