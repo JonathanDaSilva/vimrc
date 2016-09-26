@@ -192,20 +192,17 @@ autocmd VimEnter,BufEnter,BufLeave,BufNewFile,BufWrite,Filetype * EditorConfigRe
 let g:EditorConfig_exec_path = "C:\Program Files (x86)\editorconfig\bin\editorconfig.exe"
 let g:EditorConfig_verbose = 0
 "   }}}
-"   Syntastic          : Synthax Checker                                      {{{
-Plug 'scrooloose/syntastic', { 'commit': '663fea9dc9371d574f1a4a6ba15cc9e60ebbe510' }
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 1
-let g:syntastic_aggregate_errors = 1
-let g:syntastic_check_on_wq = 0
+"   NeoMake            : Synthax Checker                                      {{{
+Plug 'neomake/neomake', { 'branch': 'vim-async' }
+let g:neomake_verbose=3
+let g:neomake_logfile='C:\error.log'
 
 function! ToggleErrors()
-    let old_last_winnr = winnr('$')
-    lclose
-    if old_last_winnr == winnr('$')
-        Errors
-    endif
+  let old_last_winnr = winnr('$')
+  lclose
+  if old_last_winnr == winnr('$')
+    Errors
+  endif
 endfunction
 nnoremap <silent> <Leader>r :<C-u>call ToggleErrors()<CR>
 "   }}}
@@ -399,6 +396,13 @@ autocmd FileType typescript set foldlevel=1
 autocmd FileType typescript set foldnestmax=2
 autocmd BufRead,BufNewFile *.spec.ts set foldnestmax=3
 autocmd FileType typescript set foldenable
+
+autocmd FileType typescript Neomake
+
+let g:neomake_typescript_enabled_makers = ['tsc', 'tslint']
+let g:neomake_typescript_tsc_maker = {
+  \ 'args': ['--project '.getcwd()],
+  \ }
 
 " let g:syntastic_typescript_checkers       = ['tsc', 'tslint']
 " let g:syntastic_typescript_checkers       = ['tsc']
