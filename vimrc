@@ -179,8 +179,8 @@ let g:zv_file_types = {
 "   }}}
 "   Grepper            : Grep                                                 {{{
 Plug 'mhinz/vim-grepper'
-noremap <leader>gt <Esc>:Grepper -tool git -query TODO:<CR>
-noremap <leader>gt <Esc>:Grepper -tool git -query FIXME:<CR>
+noremap <leader>gt <Esc>:Grepper -tool git -noswitch -query TODO<CR>
+noremap <leader>gf <Esc>:Grepper -tool git -noswitch -query FIXME<CR>
 noremap <leader>gg <Esc>:Grepper -tool git<CR>
 
 "   }}}
