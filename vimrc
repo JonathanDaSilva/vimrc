@@ -150,7 +150,7 @@ noremap <Leader>at <ESC>:CtrlPBufTagAll<CR>
 noremap <C-p> <ESC>:CtrlP<CR>
 "   }}}
 "   YouCompleteMe      : AutoCompletion                                       {{{
-Plug 'Valloric/YouCompleteMe', { 'do': 'python install.py --omnisharp-completer --tern-completer' }
+Plug 'Valloric/YouCompleteMe', { 'do': 'python install.py --omnisharp-completer --tern-completer --clang-completer' }
 let g:ycm_key_list_select_completion               = ['<c-j>', '<Down>']
 let g:ycm_key_list_previous_completion             = ['<c-k>', '<Up>']
 let g:ycm_key_invoke_completion                    = '<C-Space>'
