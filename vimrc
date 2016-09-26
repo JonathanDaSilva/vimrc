@@ -177,13 +177,16 @@ let g:zv_file_types = {
             \ '^(md|mdown|mkd|mkdn)$' : 'markdown',
         \ }
 "   }}}
+"   Grepper            : Grep                                                 {{{
+Plug 'mhinz/vim-grepper'
+noremap <leader>gt <Esc>:Grepper -tool git -query TODO:<CR>
+noremap <leader>gt <Esc>:Grepper -tool git -query FIXME:<CR>
+noremap <leader>gg <Esc>:Grepper -tool git<CR>
+
+"   }}}
 
 "   GitGutter          : Show sign for change in files                        {{{
 Plug 'airblade/vim-gitgutter'
-noremap <Leader>gt <Esc>:GitGutterLineHighlightsToggle<CR>
-noremap <Leader>gr <Esc>:GitGutterReverHunk<CR>
-noremap <Leader>gp <Esc>:GitGutterPreviewHunk<CR>
-noremap <Leader>gs <Esc>:GitGutterStageHunk<CR>
 "   }}}
 
 "   EditorConfig       : Synchronise configuration between multiple editor    {{{
