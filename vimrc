@@ -150,7 +150,7 @@ noremap <Leader>at <ESC>:CtrlPBufTagAll<CR>
 noremap <C-p> <ESC>:CtrlP<CR>
 "   }}}
 "   YouCompleteMe      : AutoCompletion                                       {{{
-Plug 'Valloric/YouCompleteMe', { 'do': 'python install.py --omnisharp-completer --tern-completer' }
+Plug 'Valloric/YouCompleteMe', { 'do': 'python install.py --omnisharp-completer --tern-completer --clang-completer' }
 let g:ycm_key_list_select_completion               = ['<c-j>', '<Down>']
 let g:ycm_key_list_previous_completion             = ['<c-k>', '<Up>']
 let g:ycm_key_invoke_completion                    = '<C-Space>'
@@ -177,13 +177,17 @@ let g:zv_file_types = {
             \ '^(md|mdown|mkd|mkdn)$' : 'markdown',
         \ }
 "   }}}
+"   Grepper            : Grep                                                 {{{
+Plug 'mhinz/vim-grepper'
+noremap <leader>gt <Esc>:Grepper -tool git -query TODO<CR>
+noremap <leader>gf <Esc>:Grepper -tool git -query FIXME<CR>
+noremap <leader>gg <Esc>:Grepper -tool git<CR>
+noremap <leader>gs <Esc>:Grepper -tool git -cword -noprompt<CR>
+
+"   }}}
 
 "   GitGutter          : Show sign for change in files                        {{{
 Plug 'airblade/vim-gitgutter'
-noremap <Leader>gt <Esc>:GitGutterLineHighlightsToggle<CR>
-noremap <Leader>gr <Esc>:GitGutterReverHunk<CR>
-noremap <Leader>gp <Esc>:GitGutterPreviewHunk<CR>
-noremap <Leader>gs <Esc>:GitGutterStageHunk<CR>
 "   }}}
 
 "   EditorConfig       : Synchronise configuration between multiple editor    {{{
