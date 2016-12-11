@@ -76,6 +76,7 @@ set wildignore+=**\\lib\\**                         " *******************
 set wildignore+=**\\build\\**,**\\build-*\\**       " *******************
 
 set wildignore+=*.psd,*.ai,*.pdf                    " Adobe files
+set wildignore+=*.css                               " I use Scss
 
 set wildignore+=.hg,.git,.svn,*.orig                " Version control
 set wildignore+=*.aux,*.out,*.toc                   " LaTeX intermediate files
@@ -100,19 +101,19 @@ nnoremap <silent> <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 nnoremap <silent> <Leader><space> zm
 
 function! MyFoldText() " {{{
-    let line = getline(v:foldstart)
+  let line = getline(v:foldstart)
 
-    let nucolwidth = &fdc + &number * &numberwidth
-    let windowwidth = winwidth(0) - nucolwidth - 3
-    let foldedlinecount = v:foldend - v:foldstart
+  let nucolwidth = &fdc + &number * &numberwidth
+  let windowwidth = winwidth(0) - nucolwidth - 3
+  let foldedlinecount = v:foldend - v:foldstart
 
-    " expand tabs into spaces
-    let onetab = strpart('          ', 0, &tabstop)
-    let line = substitute(line, '\t', onetab, 'g')
+  " expand tabs into spaces
+  let onetab = strpart('          ', 0, &tabstop)
+  let line = substitute(line, '\t', onetab, 'g')
 
-    let line = strpart(line, 0, windowwidth - 2 -len(foldedlinecount))
-    let fillcharcount = windowwidth - len(line) - len(foldedlinecount)
-    return line . '…' . repeat(" ",fillcharcount) . foldedlinecount. "…"
+  let line = strpart(line, 0, windowwidth - 2 -len(foldedlinecount))
+  let fillcharcount = windowwidth - len(line) - len(foldedlinecount)
+  return line . '…' . repeat(" ",fillcharcount) . foldedlinecount. "…"
 endfunction " }}}
 
 " }}}
@@ -171,11 +172,11 @@ noremap <leader>l <ESC>:YcmCompleter GoToDefinition<CR>
 Plug 'KabbAmine/zeavim.vim'
 let g:zv_zeal_executable = "C:\\Program Files (x86)\\Zeal\\zeal.exe"
 let g:zv_file_types = {
-            \ 'typescript'            : 'javascript,typescript',
-            \ '^(G|g)runtfile\.'      : 'grunt',
-            \ '^(G|g)ulpfile\.'       : 'gulp',
-            \ '^(md|mdown|mkd|mkdn)$' : 'markdown',
-        \ }
+      \ 'typescript'            : 'javascript,typescript',
+      \ '^(G|g)runtfile\.'      : 'grunt',
+      \ '^(G|g)ulpfile\.'       : 'gulp',
+      \ '^(md|mdown|mkd|mkdn)$' : 'markdown',
+      \ }
 "   }}}
 "   Grepper            : Grep                                                 {{{
 Plug 'mhinz/vim-grepper'
@@ -205,11 +206,11 @@ let g:syntastic_aggregate_errors = 1
 let g:syntastic_check_on_wq = 0
 
 function! ToggleErrors()
-    let old_last_winnr = winnr('$')
-    lclose
-    if old_last_winnr == winnr('$')
-        Errors
-    endif
+  let old_last_winnr = winnr('$')
+  lclose
+  if old_last_winnr == winnr('$')
+    Errors
+  endif
 endfunction
 nnoremap <silent> <Leader>r :<C-u>call ToggleErrors()<CR>
 "   }}}
@@ -499,7 +500,7 @@ call plug#end()
 
 if has('vim_starting')
   try
-  colorscheme Tomorrow-Night-Eighties
-    catch
+    colorscheme Tomorrow-Night-Eighties
+  catch
   endtry
 endif
