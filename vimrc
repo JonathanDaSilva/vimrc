@@ -198,7 +198,7 @@ let g:EditorConfig_exec_path = "C:\Program Files (x86)\editorconfig\bin\editorco
 let g:EditorConfig_verbose = 0
 "   }}}
 "   Syntastic          : Synthax Checker                                      {{{
-Plug 'scrooloose/syntastic', { 'commit': '663fea9dc9371d574f1a4a6ba15cc9e60ebbe510' }
+Plug 'scrooloose/syntastic'
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
@@ -405,9 +405,7 @@ autocmd FileType typescript set foldnestmax=2
 autocmd BufRead,BufNewFile *.spec.ts set foldnestmax=3
 autocmd FileType typescript set foldenable
 
-" let g:syntastic_typescript_checkers       = ['tsc', 'tslint']
-" let g:syntastic_typescript_checkers       = ['tsc']
-let g:syntastic_typescript_checkers       = []
+let g:syntastic_typescript_checkers       = ['tslint']
 let g:syntastic_typescript_tsc_args       = '--project '.getcwd()
 let g:syntastic_typescript_tsc_fname      = ""
 let g:syntastic_typescript_tsc_args_after = ""
