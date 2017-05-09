@@ -60,8 +60,6 @@ vnoremap <C-s> <ESC>:w!<CR>
 nnoremap <C-w> <ESC>:q<CR>
 inoremap <C-w> <ESC>:q<CR>
 vnoremap <C-w> <ESC>:q<CR>
-" CTags
-noremap <F10> <ESC>:silent call vimproc#system('ctags -R --fields=+l')<CR>
 
 " }}}
 " WildIgnore         {{{
@@ -74,6 +72,8 @@ set wildignore+=**\\jspm_packages\\**               " *******************
 set wildignore+=**\\vendor\\**,**\\packages\**      " *******************
 set wildignore+=**\\lib\\**                         " *******************
 set wildignore+=**\\build\\**,**\\build-*\\**       " *******************
+set wildignore+=**\\plugins\\**,                    " *******************
+set wildignore+=**\\www\\**,                        " *******************
 
 set wildignore+=*.psd,*.ai,*.pdf                    " Adobe files
 set wildignore+=*.css                               " I use Scss
@@ -126,9 +126,6 @@ nnoremap <Leader>bi :PlugInstall<CR>
 nnoremap <Leader>bu :PlugUpdate<CR>
 nnoremap <Leader>bc :PlugClean<CR>
 "   }}}
-"   Vimproc            : A dll for Shougo plugins                             {{{
-Plug 'Shougo/vimproc.vim', { 'do': 'mingw32-make' }
-"   }}}
 "   Unite              : An incredible interface                              {{{
 Plug 'unite.vim'
 let g:unite_source_history_yank_enable = 1
@@ -140,8 +137,6 @@ noremap  <C-y> <Esc>:Unite file -start-insert<CR>
 "   }}}
 "   CtrlP              : Fuzzy Finder                                         {{{
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'FelikZ/ctrlp-py-matcher'
-let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 let g:ctrlp_show_hidden = 1
 let g:ctrlp_use_caching = 0
 
@@ -164,6 +159,7 @@ let g:ycm_cache_omnifunc                           = 1
 let g:ycm_enable_diagnostic_signs                  = 1
 let g:ycm_min_num_of_chars_for_completion          = 0
 let g:ycm_autoclose_preview_window_after_insertion = 0
+let g:ycm_server_python_interpreter                = 'C:/Python35/python.exe'
 
 noremap <leader>d <ESC>:YcmCompleter GetDoc<CR>
 noremap <leader>l <ESC>:YcmCompleter GoToDefinition<CR>
@@ -172,47 +168,27 @@ noremap <leader>l <ESC>:YcmCompleter GoToDefinition<CR>
 Plug 'KabbAmine/zeavim.vim'
 let g:zv_zeal_executable = "C:\\Program Files (x86)\\Zeal\\zeal.exe"
 let g:zv_file_types = {
-      \ 'typescript'            : 'javascript,typescript',
-      \ '^(G|g)runtfile\.'      : 'grunt',
-      \ '^(G|g)ulpfile\.'       : 'gulp',
-      \ '^(md|mdown|mkd|mkdn)$' : 'markdown',
-      \ }
+  \ 'typescript'            : 'javascript,typescript',
+  \ '^(G|g)runtfile\.'      : 'grunt',
+  \ '^(G|g)ulpfile\.'       : 'gulp',
+  \ '^(md|mdown|mkd|mkdn)$' : 'markdown',
+  \ }
 "   }}}
-"   Grepper            : Grep                                                 {{{
-Plug 'mhinz/vim-grepper'
-noremap <leader>gt <Esc>:Grepper -tool git -query TODO<CR>
-noremap <leader>gf <Esc>:Grepper -tool git -query FIXME<CR>
-noremap <leader>gg <Esc>:Grepper -tool git<CR>
-noremap <leader>gs <Esc>:Grepper -tool git -cword -noprompt<CR>
-
+"   Ale                : Linter                                               {{{
+Plug 'w0rp/ale'
+let g:ale_linters = {
+\   'typescript': ['tslint'],
+\   'yaml': ['yamllint'],
+\   'json': ['jsonlint'],
+\   'cmake': ['cmakelint'],
+\   'scss': ['stylelint'],
+\}
 "   }}}
-
-"   GitGutter          : Show sign for change in files                        {{{
-Plug 'airblade/vim-gitgutter'
-"   }}}
-
 "   EditorConfig       : Synchronise configuration between multiple editor    {{{
 Plug 'editorconfig/editorconfig-vim'
 autocmd VimEnter,BufEnter,BufLeave,BufNewFile,BufWrite,Filetype * EditorConfigReload
 let g:EditorConfig_exec_path = "C:\Program Files (x86)\editorconfig\bin\editorconfig.exe"
 let g:EditorConfig_verbose = 0
-"   }}}
-"   Syntastic          : Synthax Checker                                      {{{
-Plug 'scrooloose/syntastic', { 'commit': '663fea9dc9371d574f1a4a6ba15cc9e60ebbe510' }
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 1
-let g:syntastic_aggregate_errors = 1
-let g:syntastic_check_on_wq = 0
-
-function! ToggleErrors()
-  let old_last_winnr = winnr('$')
-  lclose
-  if old_last_winnr == winnr('$')
-    Errors
-  endif
-endfunction
-nnoremap <silent> <Leader>r :<C-u>call ToggleErrors()<CR>
 "   }}}
 "   UltiSnips          : The best snippets manager                            {{{
 Plug 'SirVer/ultisnips'
@@ -222,13 +198,6 @@ let g:UltiSnipsJumpForwardTrigger  = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 set runtimepath+=~/.vim/ultisnips/ " Need to point to the parent pythonx directory script
 nnoremap <Leader>es <ESC>:UltiSnipsEdit<CR>
-"   }}}
-"   Tabular            : Automaticly align caracter                           {{{
-Plug 'godlygeek/tabular'
-vnoremap <Leader>= <ESC>:Tabular /=<CR>
-vnoremap <Leader><Leader>= <ESC>:Tabular /=><CR>
-vnoremap <Leader>: <ESC>:Tabular /:<CR>
-vnoremap <Leader><Leader>: <ESC>:Tabular /:\zs<CR>
 "   }}}
 "   Emmet              : Expand HTML code                                     {{{
 Plug 'mattn/emmet-vim'
@@ -240,10 +209,6 @@ let g:user_emmet_expandabbr_key = '<C-l>'
 Plug 'tpope/vim-commentary'
 silent! unmap cgc
 "   }}}
-
-"   MultipleCursor     : Provide MultiCursor of ST                            {{{
-Plug 'terryma/vim-multiple-cursors'
-"   }}}
 "   EasyMotion         : Move quickly into your files                         {{{
 Plug 'easymotion/vim-easymotion'
 let g:EasyMotion_skipfoldedline = 0
@@ -251,11 +216,6 @@ let g:EasyMotion_smartcase = 1
 map <Leader>t <Plug>(easymotion-bd-f)
 map <Leader>s <Plug>(easymotion-bd-jk)
 map <Leader>n <Plug>(easymotion-sn)
-"   }}}
-"   ChooseWin          : Easy switching between tabs and split                {{{
-Plug 't9md/vim-choosewin'
-noremap - <ESC>:ChooseWin<CR>
-vnoremap - <ESC>:ChooseWin<CR>
 "   }}}
 
 "   IndentGuide        : Display indent guides                                {{{
@@ -295,7 +255,7 @@ set mousehide
 
 set guifont=Source\ Code\ Pro\ Medium:h14
 syntax on
-set synmaxcol=800
+set synmaxcol=120
 
 " Display number and relative number
 set number
@@ -396,6 +356,8 @@ autocmd FileType javascript set tabstop=2 shiftwidth=2
 "   }}}
 "   TypeScript {{{
 Plug 'leafgarland/typescript-vim'
+Plug 'Quramy/vim-js-pretty-template'
+autocmd FileType typescript JsPreTmpl graphql
 autocmd BufRead,BufNewFile *.ts set filetype=typescript
 autocmd FileType typescript set tabstop=4 shiftwidth=4
 autocmd FileType typescript set commentstring=//%s
@@ -404,13 +366,9 @@ autocmd FileType typescript set foldlevel=1
 autocmd FileType typescript set foldnestmax=2
 autocmd BufRead,BufNewFile *.spec.ts set foldnestmax=3
 autocmd FileType typescript set foldenable
-
-" let g:syntastic_typescript_checkers       = ['tsc', 'tslint']
-" let g:syntastic_typescript_checkers       = ['tsc']
-let g:syntastic_typescript_checkers       = []
-let g:syntastic_typescript_tsc_args       = '--project '.getcwd()
-let g:syntastic_typescript_tsc_fname      = ""
-let g:syntastic_typescript_tsc_args_after = ""
+"   }}}
+"   GraphQL {{{
+Plug 'jparise/vim-graphql'
 "   }}}
 
 "   Grunt {{{
@@ -425,8 +383,6 @@ Plug 'leshill/vim-json'
 autocmd BufRead,BufNewFile .babelrc set filetype=json
 autocmd BufRead,BufNewFile *.json   set filetype=json
 autocmd FileType json set tabstop=2 shiftwidth=2
-
-let g:syntastic_json_checkers = ['jsonlint']
 "   }}}
 "   Yaml {{{
 Plug 'pearofducks/ansible-vim'
@@ -442,7 +398,7 @@ autocmd FileType dosini set commentstring=;%s
 
 set history=1000
 set undolevels=500
-set backup noswapfile undofile
+set nobackup noswapfile noundofile
 
 set undodir=~/.vim/tmp/undo//
 set backupdir=~/.vim/tmp/backup//
@@ -493,7 +449,6 @@ noremap I I
 vnoremap i I
 "    Macro
 noremap j q
-
 
 " }}}
 call plug#end()
