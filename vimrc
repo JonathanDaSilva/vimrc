@@ -357,7 +357,6 @@ autocmd FileType javascript set tabstop=2 shiftwidth=2
 "   TypeScript {{{
 Plug 'leafgarland/typescript-vim'
 Plug 'Quramy/vim-js-pretty-template'
-autocmd FileType typescript JsPreTmpl graphql
 autocmd BufRead,BufNewFile *.ts set filetype=typescript
 autocmd FileType typescript set tabstop=4 shiftwidth=4
 autocmd FileType typescript set commentstring=//%s
@@ -366,9 +365,6 @@ autocmd FileType typescript set foldlevel=1
 autocmd FileType typescript set foldnestmax=2
 autocmd BufRead,BufNewFile *.spec.ts set foldnestmax=3
 autocmd FileType typescript set foldenable
-"   }}}
-"   GraphQL {{{
-Plug 'jparise/vim-graphql'
 "   }}}
 
 "   Grunt {{{
